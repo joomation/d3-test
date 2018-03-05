@@ -11,55 +11,31 @@
 </head>
 
 <body>
-    <button onclick="scale()">스케일</button>
-    <svg width="960" height="500"></svg>
+    <button onclick="volume()">볼륨업</button>
+    <button onclick="scale()">활성화</button>
+    <svg></svg>
     <script>
-        var svg = d3.select("svg"),
-            width = +svg.attr("width"),
-            height = +svg.attr("height"),
-            angles = d3.range(0, 2 * Math.PI, Math.PI / 100);
-
-        var path = svg.append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+        var svg = d3.select("svg");
+        svg.attr("width", document.documentElement.clientWidth);
+        svg.attr("height", 400);
+        angles = d3.range(0, 2 * Math.PI, Math.PI / 100);
+        var enjoy = svg.append("g")
+            .style("mix-blend-mode", 'multiply')
+            .attr("transform", "translate(" + document.documentElement.clientWidth / 2 + "," + 400 / 2 + ")")
+            .append("g")
+            .attr("transform", "rotate(90)")
             .attr("fill", "none")
             .attr("stroke-width", 2)
             .attr("stroke-linejoin", "round")
             .selectAll("path")
-            .data(["#2196F3", "#00BCD4", "#3F51B5", "#9C27B0"])
+            .data([0, 1, 2,3])
             .enter().append("path")
-            .attr("stroke", function (d) {
-                return d;
-            })
-            .style("mix-blend-mode", "difference")
-            .datum(function (d, i) {
-                return d3.radialLine()
-                    .curve(d3.curveLinearClosed)
-                    .angle(function (a) {
-                        return a;
-                    })
-                    .radius(function (a) {
-                        var t = d3.now() / 1000;
-                        return 200 + Math.cos(a * 5 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) /
-                            2, 4) * 20;
-                    });
-            });
-        var path2 = svg.append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
-            .append("g")
-            .attr("transform", "rotate(120)")
-            .attr("fill", "none")
-            .attr("stroke-width", 1.5)
-            .attr("stroke-linejoin", "round")
-            .selectAll("path")
-            .data(["#2196F3", "#00BCD4", "#3F51B5", "#9C27B0"])
-            .enter().append("path")
-            .attr("stroke", function (d, i) {
-                return d;
-            })
+            .attr("transform", "scale(0.5)")
+            .attr("stroke", '#fff00000')
+            .attr("fill", '#FFC107')
             .attr("opacity", function (d, i) {
                 return 1 - (i * 0.25)
             })
-            .style("mix-blend-mode", "multiply")
             .datum(function (d, i) {
                 return d3.radialLine()
                     .curve(d3.curveLinearClosed)
@@ -67,104 +43,227 @@
                         return a;
                     })
                     .radius(function (a) {
-                        var t = d3.now() / 1000;
-                        return 200 + Math.cos(a * 5 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) /
+                        var t = d3.now() / 700;
+                        return 80 + Math.cos(a * 4 - 1 * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) /
                             2, 4) * 10;
-                    });
-            })
-            .attr("d",function(d){
+                    })
 
+            })
+            .attr("d", function (d) {
                 return d(angles);
+            });
+        var sad = svg.append("g")
+            .style("mix-blend-mode", 'multiply')
+            .attr("transform", "translate(" + document.documentElement.clientWidth / 2 + "," + 400 / 2 + ")")
+            .append("g")
+            .attr("transform", "rotate(180)")
+            .attr("fill", "none")
+            .attr("stroke-width", 2)
+            .attr("stroke-linejoin", "round")
+            .selectAll("path")
+            .data([0, 1, 2,3])
+            .enter().append("path")
+            .attr("transform", "scale(0.5)")
+            .attr("stroke", '#fff00000')
+            .attr("fill", '#1d79c1')
+            .attr("opacity", function (d, i) {
+                return 1 - (i * 0.25)
             })
-        // d3.timer(function () {
-        //     path.attr("d", function (d) {
-        //         return d(angles);
-        //     });
-        // });
-        function scale() {
-            timer.restart(function(){
-                console.log('adf')
+            .datum(function (d, i) {
+                return d3.radialLine()
+                    .curve(d3.curveLinearClosed)
+                    .angle(function (a) {
+                        return a;
+                    })
+                    .radius(function (a) {
+                        var t = d3.now() / 700;
+                        return 80 + Math.cos(a * 4 - 1 * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) /
+                            2, 4) * 10;
+                    })
+
             })
-            // path2.datum(function (d, i) {
-            //         return d3.radialLine()
-            //             .curve(d3.curveLinearClosed)
-            //             .angle(function (a) {
-            //                 return a;
-            //             })
-            //             .radius(function (a) {
-            //                 var t = d3.now() / 1000;
-            //                 return 200 + Math.cos(a * 5 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) /
-            //                     2, 4) * 100;
-            //             });
-            //     })
-            //     .transition().duration(500)
-            // .attr("d", function (d) {
-            //     return d(angles);
-            // })
-            // .on('end',start)
+            .attr("d", function (d) {
+                return d(angles);
+            });
+        var angry = svg.append("g")
+            .style("mix-blend-mode", 'multiply')
+            .attr("transform", "translate(" + document.documentElement.clientWidth / 2 + "," + 400 / 2 + ")")
+            .append("g")
+            .attr("transform", "rotate(0)")
+            .attr("fill", "none")
+            .attr("stroke-width", 2)
+            .attr("stroke-linejoin", "round")
+            .selectAll("path")
+            .data([0, 1, 2,3])
+            .enter().append("path")
+            .attr("transform", "scale(0.5)")
+            .attr("stroke", '#fff00000')
+            .attr("fill", '#e91e63')
+            .attr("opacity", function (d, i) {
+                return 1 - (i * 0.25)
+            })
 
-        }
+            .datum(function (d, i) {
+                return d3.radialLine()
+                    .curve(d3.curveLinearClosed)
+                    .angle(function (a) {
+                        return a;
+                    })
+                    .radius(function (a) {
+                        var t = d3.now() / 700;
+                        return 80 + Math.cos(a * 4 - 1 * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) /
+                            2, 4) * 10;
+                    })
 
-        
-        var timer= d3.timer(function () {
-            path2.attr("d", function (d) {
+            })
+
+        var timer = d3.timer(function () {
+            enjoy.attr("d", function (d) {
+                return d(angles);
+            });
+            sad.attr("d", function (d) {
+                return d(angles);
+            });
+            angry.attr("d", function (d) {
                 return d(angles);
             });
         });
-    
+
+        function volume() {
+            var timer = d3.timer(function (elapsed) {
+                var max = 80;
+                var min = 10;
+                var elapsed = min + elapsed * 1.0 / 2;
+                if (elapsed > max) {
+                    elapsed = max - elapsed * 1.0 / 5;
+                }
+                if (elapsed < max && elapsed > min) {
+                    sad.datum(function (d, i) {
+                        return d3.radialLine()
+                            .curve(d3.curveLinearClosed)
+                            .angle(function (a) {
+                                return a;
+                            })
+                            .radius(function (a) {
+                                var t = d3.now() / 400;
+                                var position = 80 + Math.cos(a * 4 - i * 1 * Math.PI / 4 + t) *
+                                    Math.pow((1 + Math.cos(a - t)) / 2, 4) * elapsed;
+                                return position
+                            });
+                    })
+                }
+            })
+
+        }
+
+        function scale() {
+            enjoy
+                .datum(function (d, i) {
+                    return d3.radialLine()
+                        .curve(d3.curveLinearClosed)
+                        .angle(function (a) {
+                            return a;
+                        })
+                        .radius(function (a) {
+                            var t = d3.now() / 400;
+                            return 80 + Math.cos(a * 4 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a -t)) / 2, 4) * 10;
+                        });
+                })
+                .transition()
+                .ease(d3.easeCubic)
+                .duration(500)
+                .attr("transform", "scale(1)")
+                .attr("fill", "#ffffff")
+                .attr("stroke", "#FFC107");
+            sad
+                .datum(function (d, i) {
+                    return d3.radialLine()
+                        .curve(d3.curveLinearClosed)
+                        .angle(function (a) {
+                            return a;
+                        })
+                        .radius(function (a) {
+                            var t = d3.now() / 400;
+                            return 80 + Math.cos(a * 4 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a -t)) / 2, 4) * 10;
+                        });
+                })
+                .transition()
+                .ease(d3.easeCubic)
+                .duration(500)
+                .attr("transform", "scale(1)")
+                .attr("fill", "#ffffff")
+                .attr("stroke", "#1d79c1");
+            angry
+                .datum(function (d, i) {
+                    return d3.radialLine()
+                        .curve(d3.curveLinearClosed)
+                        .angle(function (a) {
+                            return a;
+                        })
+                        .radius(function (a) {
+                            var t = d3.now() / 400;
+                            return 80 + Math.cos(a * 4 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a -
+                                t)) / 2, 4) * 10;
+                        });
+                })
+                .transition()
+                .ease(d3.easeCubic)
+                .duration(500)
+                .attr("transform", "scale(1)")
+                .attr("fill", "#fff00000")
+                .attr("stroke", "#e91e63");
+        }
 
 
-//         var easing = [
-//     "easeElastic",
-//     "easeBounce",
-//     "easeLinear",
-//     "easeSin",
-//     "easeQuad",
-//     "easeCubic",
-//     "easePoly",
-//     "easeCircle",
-//     "easeExp",
-//     "easeBack"
-//     ];
+        //         var easing = [
+        //     "easeElastic",
+        //     "easeBounce",
+        //     "easeLinear",
+        //     "easeSin",
+        //     "easeQuad",
+        //     "easeCubic",
+        //     "easePoly",
+        //     "easeCircle",
+        //     "easeExp",
+        //     "easeBack"
+        //     ];
 
-// var svg = d3.select("body")
-//         .append("svg")
-//         .attr("width", 960)
-//         .attr("height", 500);
+        // var svg = d3.select("body")
+        //         .append("svg")
+        //         .attr("width", 960)
+        //         .attr("height", 500);
 
-// function circleTransition(easement,yPos){ 
+        // function circleTransition(easement,yPos){ 
 
-//     var timeCircle = svg.append("circle")
-//         .attr("fill", "steelblue")
-//         .attr("r", 20);
-//     repeat();
-    
-//     function repeat() {
-//       timeCircle
-//         .attr('cx', 210)          // position the circle at 40 on the x axis
-//         .attr('cy', (yPos*45)+25) // position the circle at 250 on the y axis
-//         .transition()             // apply a transition
-//         .ease(easement)           // control the speed of the transition
-//         .duration(4000)           // apply it over 2000 milliseconds
-//         .attr('cx', 720)          // move the circle to 920 on the x axis
-//         .transition()             // apply a transition
-//         .ease(easement)           // control the speed of the transition
-//         .duration(4000)           // apply it over 2000 milliseconds
-//         .attr('cx', 210)          // return the circle to 40 on the x axis
-//         .on("end", repeat);       // when the transition finishes start again
-//     };
+        //     var timeCircle = svg.append("circle")
+        //         .attr("fill", "steelblue")
+        //         .attr("r", 20);
+        //     repeat();
 
-//     var easeType = svg.append("text")
-//         .attr("dy", ".35em") // set offset y position
-//         .attr("x", 475)
-//       .attr("text-anchor", "middle") // set anchor x justification
-//         .attr("y", (yPos*45)+25)
-//         .text(easing[yPos]);
-// };
+        //     function repeat() {
+        //       timeCircle
+        //         .attr('cx', 210)          // position the circle at 40 on the x axis
+        //         .attr('cy', (yPos*45)+25) // position the circle at 250 on the y axis
+        //         .transition()             // apply a transition
+        //         .ease(easement)           // control the speed of the transition
+        //         .duration(4000)           // apply it over 2000 milliseconds
+        //         .attr('cx', 720)          // move the circle to 920 on the x axis
+        //         .transition()             // apply a transition
+        //         .ease(easement)           // control the speed of the transition
+        //         .duration(4000)           // apply it over 2000 milliseconds
+        //         .attr('cx', 210)          // return the circle to 40 on the x axis
+        //         .on("end", repeat);       // when the transition finishes start again
+        //     };
 
-// circleTransition(d3.easeElastic,0);
+        //     var easeType = svg.append("text")
+        //         .attr("dy", ".35em") // set offset y position
+        //         .attr("x", 475)
+        //       .attr("text-anchor", "middle") // set anchor x justification
+        //         .attr("y", (yPos*45)+25)
+        //         .text(easing[yPos]);
+        // };
 
-
+        // circleTransition(d3.easeElastic,0);
     </script>
 </body>
 
