@@ -6,139 +6,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>emotion</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
 </head>
 
 <body>
-    <button onclick="volume()">볼륨업</button>
-    <button onclick="scale()">활성화</button>
-    <svg></svg>
+    <button onclick="volumeTrigger()">볼륨업</button>
+    <button onclick="scaleTrigger()">활성화</button>
+    <svg>
+        <defs>
+
+            <radialGradient id="enjoy"  x1="0%" y1="50%" x2="50%" y2="0%" >
+                <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                <stop offset="100%" stop-color="rgba(255, 166, 33,1)" />
+            </radialGradient>
+            <radialGradient id="sad">
+                <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                <stop offset="100%" stop-color="rgba(33, 150, 243,1)" />
+            </radialGradient>
+            <radialGradient id="angry">
+                <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                <stop offset="100%" stop-color="rgba(244, 67, 54,1)" />
+            </radialGradient>
+            <radialGradient id="fear">
+                <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                <stop offset="100%" stop-color="rgba(193, 69, 214,1)" />
+            </radialGradient>
+            <radialGradient id="disgust">
+                <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                <stop offset="100%" stop-color="rgba(76, 175, 80,1)" />
+            </radialGradient>
+            <radialGradient id="default">
+                <stop offset="70%" stop-color="rgba(255, 255, 255,1)" />
+                <stop offset="100%" stop-color="rgba(255, 255, 255,0)" />
+            </radialGradient>
+        </defs>
+    </svg>
     <script>
         var svg = d3.select("svg");
+        var enjoy, sad, angry, fear, digust;
         svg.attr("width", document.documentElement.clientWidth);
         svg.attr("height", 400);
-        angles = d3.range(0, 2 * Math.PI, Math.PI / 100);
-        var enjoy = svg.append("g")
-            .style("mix-blend-mode", 'multiply')
-            .attr("transform", "translate(" + document.documentElement.clientWidth / 2 + "," + 400 / 2 + ")")
-            .append("g")
-            .attr("transform", "rotate(90)")
-            .attr("fill", "none")
-            .attr("stroke-width", 2)
-            .attr("stroke-linejoin", "round")
-            .selectAll("path")
-            .data([0, 1, 2,3])
-            .enter().append("path")
-            .attr("transform", "scale(0.5)")
-            .attr("stroke", '#fff00000')
-            .attr("fill", '#FFC107')
-            .attr("opacity", function (d, i) {
-                return 1 - (i * 0.25)
-            })
-            .datum(function (d, i) {
-                return d3.radialLine()
-                    .curve(d3.curveLinearClosed)
-                    .angle(function (a) {
-                        return a;
-                    })
-                    .radius(function (a) {
-                        var t = d3.now() / 700;
-                        return 80 + Math.cos(a * 4 - 1 * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) /
-                            2, 4) * 10;
-                    })
+        var angles = d3.range(0, 2 * Math.PI, Math.PI / 100);
+        //color definition
+        //svg gradient
+        var graenjoy='url(#enjoy)';
+        var graangry='url(#angry)';
+        var grasad='url(#sad)';
+        var grafear='url(#fear)';
+        var gradisgust='url(#disgust)';
+        
 
-            })
-            .attr("d", function (d) {
-                return d(angles);
+
+        var enjoyColor = "rgba(255, 166, 33,1)";
+        var sadColor = "rgba(33, 150, 243,1)";
+        var angryColor = "rgba(244, 67, 54,1)";
+        var fearColor = "rgba(193, 69, 214,1)";
+        var disgustColor = "rgba(76, 175, 80,1)";
+        var defaultColor = "rgba(255, 255, 255,1)";
+        var transparent = "rgba(255, 255, 255,0)";
+
+
+        setStyles('enjoy', enjoyColor, 0,'screen',12,55);
+        setStyles('sad',sadColor,80,'screen',12,55);
+        setStyles('angry',angryColor,160,'screen',12,55);
+        setStyles('disgust',disgustColor,240,'screen',12,55);
+        setStyles('fear',fearColor,320,'screen',12,55);
+        //setStyles('default', 'url(#enjoy)', 240,'screen',10,55);
+        function volumeTrigger() {
+            volume('enjoy', 80);
+            volume('sad', 20);
+            volume('angry', 0);
+            volume('disgust', 0);
+            volume('fear', 0);
+        }
+
+        function scaleTrigger() {
+            scale('enjoy', enjoyColor);
+            scale('sad', sadColor);
+      
+        }
+
+
+        function setStyles(type, color, dgree,blend,wave,scale) {
+            window[type] = svg.append("g")
+                .style("mix-blend-mode", blend)
+                .attr("opacity", "1")
+                .attr("transform", "translate(" + document.documentElement.clientWidth / 2 + "," + 400 / 2 + ")")
+                .append("g")
+                .attr("transform", "rotate(" + dgree + ")")
+                .attr("fill", "none")
+                .attr("stroke-width", 2)
+                .attr("stroke-linejoin", "round")
+                .selectAll("path")
+                .data([enjoyColor,disgustColor,sadColor,angryColor,fearColor])
+                .enter().append("path")
+                .attr("transform", "scale(0.5)")
+                .style("mix-blend-mode", blend)
+                .attr("stroke", function(d){
+                    return transparent
+                })
+                .attr("fill", function(d){
+                    return color
+                })
+                .attr("opacity", function (d, i) {
+                    return 1 - (i * 0.25)
+                })
+                .datum(function (d, i) {
+                    return circleWave(d, i,wave,scale);
+
+                });
+            var timer = d3.timer(function () {
+                window[type].attr("d", function (d) {
+                    return d(angles);
+                });
             });
-        var sad = svg.append("g")
-            .style("mix-blend-mode", 'multiply')
-            .attr("transform", "translate(" + document.documentElement.clientWidth / 2 + "," + 400 / 2 + ")")
-            .append("g")
-            .attr("transform", "rotate(180)")
-            .attr("fill", "none")
-            .attr("stroke-width", 2)
-            .attr("stroke-linejoin", "round")
-            .selectAll("path")
-            .data([0, 1, 2,3])
-            .enter().append("path")
-            .attr("transform", "scale(0.5)")
-            .attr("stroke", '#fff00000')
-            .attr("fill", '#1d79c1')
-            .attr("opacity", function (d, i) {
-                return 1 - (i * 0.25)
-            })
-            .datum(function (d, i) {
-                return d3.radialLine()
-                    .curve(d3.curveLinearClosed)
-                    .angle(function (a) {
-                        return a;
-                    })
-                    .radius(function (a) {
-                        var t = d3.now() / 700;
-                        return 80 + Math.cos(a * 4 - 1 * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) /
-                            2, 4) * 10;
-                    })
+        }
 
-            })
-            .attr("d", function (d) {
-                return d(angles);
-            });
-        var angry = svg.append("g")
-            .style("mix-blend-mode", 'multiply')
-            .attr("transform", "translate(" + document.documentElement.clientWidth / 2 + "," + 400 / 2 + ")")
-            .append("g")
-            .attr("transform", "rotate(0)")
-            .attr("fill", "none")
-            .attr("stroke-width", 2)
-            .attr("stroke-linejoin", "round")
-            .selectAll("path")
-            .data([0, 1, 2,3])
-            .enter().append("path")
-            .attr("transform", "scale(0.5)")
-            .attr("stroke", '#fff00000')
-            .attr("fill", '#e91e63')
-            .attr("opacity", function (d, i) {
-                return 1 - (i * 0.25)
-            })
+        function circleWave(d, i,wave,scale) {
+            return d3.radialLine()
+                .curve(d3.curveLinearClosed)
+                .angle(function (a) {
+                    return a;
+                })
+                .radius(function (a) {
+                    var t = d3.now() / 1000;
+                    var position = scale + Math.cos(a * 1- i * 1 * Math.PI/ 5 + t) *Math.pow((1 + Math.cos(a - t)) / 2,4) * wave;
+                                return position
+                })
+        }
 
-            .datum(function (d, i) {
-                return d3.radialLine()
-                    .curve(d3.curveLinearClosed)
-                    .angle(function (a) {
-                        return a;
-                    })
-                    .radius(function (a) {
-                        var t = d3.now() / 700;
-                        return 80 + Math.cos(a * 4 - 1 * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) /
-                            2, 4) * 10;
-                    })
-
-            })
-
-        var timer = d3.timer(function () {
-            enjoy.attr("d", function (d) {
-                return d(angles);
-            });
-            sad.attr("d", function (d) {
-                return d(angles);
-            });
-            angry.attr("d", function (d) {
-                return d(angles);
-            });
-        });
-
-        function volume() {
+        function volume(type, size) {
             var timer = d3.timer(function (elapsed) {
-                var max = 80;
+                var max = size;
                 var min = 10;
                 var elapsed = min + elapsed * 1.0 / 2;
                 if (elapsed > max) {
                     elapsed = max - elapsed * 1.0 / 5;
                 }
                 if (elapsed < max && elapsed > min) {
-                    sad.datum(function (d, i) {
+                    window[type].datum(function (d, i) {
                         return d3.radialLine()
                             .curve(d3.curveLinearClosed)
                             .angle(function (a) {
@@ -156,8 +164,8 @@
 
         }
 
-        function scale() {
-            enjoy
+        function scale(type, color) {
+            window[type]
                 .datum(function (d, i) {
                     return d3.radialLine()
                         .curve(d3.curveLinearClosed)
@@ -166,52 +174,15 @@
                         })
                         .radius(function (a) {
                             var t = d3.now() / 400;
-                            return 80 + Math.cos(a * 4 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a -t)) / 2, 4) * 10;
+                            return 80 + Math.cos(a * 4 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a - t)) / 2, 4) * 10;
                         });
                 })
                 .transition()
                 .ease(d3.easeCubic)
                 .duration(500)
                 .attr("transform", "scale(1)")
-                .attr("fill", "#ffffff")
-                .attr("stroke", "#FFC107");
-            sad
-                .datum(function (d, i) {
-                    return d3.radialLine()
-                        .curve(d3.curveLinearClosed)
-                        .angle(function (a) {
-                            return a;
-                        })
-                        .radius(function (a) {
-                            var t = d3.now() / 400;
-                            return 80 + Math.cos(a * 4 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a -t)) / 2, 4) * 10;
-                        });
-                })
-                .transition()
-                .ease(d3.easeCubic)
-                .duration(500)
-                .attr("transform", "scale(1)")
-                .attr("fill", "#ffffff")
-                .attr("stroke", "#1d79c1");
-            angry
-                .datum(function (d, i) {
-                    return d3.radialLine()
-                        .curve(d3.curveLinearClosed)
-                        .angle(function (a) {
-                            return a;
-                        })
-                        .radius(function (a) {
-                            var t = d3.now() / 400;
-                            return 80 + Math.cos(a * 4 - i * 1 * Math.PI / 4 + t) * Math.pow((1 + Math.cos(a -
-                                t)) / 2, 4) * 10;
-                        });
-                })
-                .transition()
-                .ease(d3.easeCubic)
-                .duration(500)
-                .attr("transform", "scale(1)")
-                .attr("fill", "#fff00000")
-                .attr("stroke", "#e91e63");
+                .attr("fill", transparent)
+                .attr("stroke", color);
         }
 
 
