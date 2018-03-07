@@ -83,13 +83,13 @@ function setFace() {
         .attr("d", [defaultEyeLeft])
         .attr("transform-origin", "50% 50%")
         .attr("stroke", transparent)
-        .attr("fill", "#000000")
+        .attr("fill", "rgba(67, 74, 80,1)")
     rightEye = facePath.select('#eyes')
         .append('path')
         .attr("d", [defaultEyeRight])
         .attr("transform-origin", "50% 50%")
         .attr("stroke", transparent)
-        .attr("fill", "#000000")
+        .attr("fill", "rgba(67, 74, 80,1)")
     mouth = facePath.append("g").attr("id", "mouth").append('path')
         .attr("d", [defaultMouth])
         .attr("transform-origin", "50% 50%")
@@ -97,8 +97,8 @@ function setFace() {
         .attr("stroke-linecap", "round")
         .attr("stroke-linejoin", "round")
         .attr("stroke-miterlimit", 20)
-        .attr("stroke", "#000000")
-        .attr("fill", "#000000")
+        .attr("stroke", "rgba(67, 74, 80,1)")
+        .attr("fill", "rgba(67, 74, 80,1)")
 }
 
 function faceDefault() {
@@ -400,9 +400,9 @@ function volume(type, size, emotionType) {
 }
 
 function scale(type, color) {
-    leftEye.attr('fill', '#ffffff');
-    rightEye.attr('fill', '#ffffff');
-    mouth.attr('stroke', '#ffffff').attr("fill", "#ffffff");
+    leftEye.attr('fill', 'rgba(255, 255, 255,1)');
+    rightEye.attr('fill', 'rgba(255, 255, 255,1)');
+    mouth.attr('stroke', 'rgba(255, 255, 255,1)').attr("fill", "rgba(255, 255, 255,1)");
     faceDefault();
     window[type]
         .datum(function (d, i) {
@@ -420,9 +420,9 @@ function scale(type, color) {
 
 }
 function scaleOut(type, color) {
-    leftEye.attr('fill', '#000000');
-    rightEye.attr('fill', '#000000');
-    mouth.attr('stroke', '#000000').attr("fill", "#000000");
+    leftEye.attr('fill', 'rgba(67, 74, 80,1)');
+    rightEye.attr('fill', 'rgba(67, 74, 80,1)');
+    mouth.attr('stroke', 'rgba(67, 74, 80,1)').attr("fill", "rgba(67, 74, 80,1)");
     faceSleep();
     window[type]
         .datum(function (d, i) {

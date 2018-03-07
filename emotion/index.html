@@ -22,20 +22,7 @@
                 Voice Inside
             </h1>
         </div>
-        <div class="voice-text">
-            <p class="intro">캐릭터를 누른 후</br>목소리를 입력해주세요</p>
-            <p class="hearing">듣고있어요</p>
-            <p>친구들하고 재밌게 놀고 있어?</p>
-        </div>
-        <div class="emotion-text">
-            <p>조금 화났군요? 캄다운~~</p>
-            <ul>
-                <li>분노</li>
-                <li>흥분</li>
-                <li>약오름</li>
-                <li>짜증</li>
-            </ul>
-        </div>
+
         <svg class="wave">
             <defs>
                 <radialGradient id="enjoy">
@@ -80,14 +67,27 @@
         <button onclick="volumeTrigger('angry')">화난볼륨</button>
         <button onclick="volumeTrigger('sad')">슬픈볼륨</button>
         <button onclick="volumeTrigger('enjoy')">기쁜볼륨</button>
-        <div class="face-wrap"onclick="scaleTrigger(this)">
+        <div class="face-wrap" onclick="scaleTrigger(this)">
             <svg version="1.1" id="face" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
-                
             </svg>
         </div>
+        <div class="voice-text">
+            <p class="intro">캐릭터를 누른 후</br>목소리를 입력해주세요</p>
+            <p class="hearing">듣고있어요</p>
+            <p class="result">친구들하고 재밌게 놀고 있어?</p>
+        </div>
+        <div class="emotion-text">
+            <p class="emotion-result">조금 화났군요? 캄다운~~</p>
+            <ul>
+                <li>분노</li>
+                <li>흥분</li>
+                <li>약오름</li>
+                <li>짜증</li>
+            </ul>
+        </div>
     </div>
-    
+
     <script src="js/emotion.js"></script>
 
 </body>
