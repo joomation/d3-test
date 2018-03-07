@@ -7,38 +7,41 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>emotion</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="addon/d3.v5.min.js"></script>
+    <script src="addon/d3-path-morphing.min.js"></script>
+    <!-- <script src="addon/three.min.js"></script>
+    <script src="js/3d.js"></script> -->
 
 </head>
 
 <body>
 
     <div class="emotion-wrap">
-        <button onclick="volumeTrigger()">볼륨업</button>
+
         <svg class="wave">
             <defs>
-                <radialGradient id="enjoy" x1="0%" y1="50%" x2="50%" y2="0%">
-                    <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                <radialGradient id="enjoy">
+                    <stop offset="50%" stop-color="rgba(255, 255, 255,0)" />
                     <stop offset="100%" stop-color="rgba(255, 166, 33,1)" />
                 </radialGradient>
                 <radialGradient id="sad">
-                    <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                    <stop offset="50%" stop-color="rgba(255, 255, 255,0)" />
                     <stop offset="100%" stop-color="rgba(33, 150, 243,1)" />
                 </radialGradient>
                 <radialGradient id="angry">
-                    <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                    <stop offset="50%" stop-color="rgba(255, 255, 255,0)" />
                     <stop offset="100%" stop-color="rgba(244, 67, 54,1)" />
                 </radialGradient>
                 <radialGradient id="fear">
-                    <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                    <stop offset="50%" stop-color="rgba(255, 255, 255,0)" />
                     <stop offset="100%" stop-color="rgba(193, 69, 214,1)" />
                 </radialGradient>
                 <radialGradient id="disgust">
-                    <stop offset="0%" stop-color="rgba(255, 255, 255,0)" />
+                    <stop offset="50%" stop-color="rgba(255, 255, 255,0)" />
                     <stop offset="100%" stop-color="rgba(76, 175, 80,1)" />
                 </radialGradient>
                 <radialGradient id="default">
-                    <stop offset="70%" stop-color="rgba(255, 255, 255,1)" />
+                    <stop offset="750%" stop-color="rgba(255, 255, 255,1)" />
                     <stop offset="100%" stop-color="rgba(255, 255, 255,0)" />
                 </radialGradient>
             </defs>
@@ -55,20 +58,19 @@
                 </g>
             </svg>
         </div>
+        <button onclick="volumeTrigger()">볼륨업</button>
+        <div class="face-wrap">
+            <svg version="1.1" id="face" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
+                
+            </svg>
+        </div>
     </div>
-    <svg x="0px" y="0px"
-        viewBox="0 0 30 30" style="enable-background:new 0 0 30 30;" xml:space="preserve">
-        <style type="text/css">
-            .st0 {
-                fill: none;
-                stroke: #fff;
-                stroke-linecap: round;
-                stroke-miterlimit: 10;
-            }
-        </style>
-        <path class="st0" d="M6.3,13.1c0-1.4,1.1-2.5,2.5-2.5s2.5,1.1,2.5,2.5" />
-    </svg>
-    <script src="js/script.js"></script>
+    <h1 class="emotion-title">
+        무엇을 도와드릴까요?
+    </h1>
+    <script src="js/emotion.js"></script>
+
 </body>
 
 </html>
