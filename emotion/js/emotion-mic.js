@@ -1,6 +1,9 @@
 var svg = d3.select("svg");
 var emotionPath, facePath;
 var leftEye, rightEye, mouth;
+var active = false;
+var emotionType = 'default';
+var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 facePath = d3.select("#face")
 svg.attr("width", document.documentElement.clientWidth);
 svg.attr("height", document.documentElement.clientHeight);
@@ -55,27 +58,40 @@ faceSleep();
 
 function volumeTrigger(type) {
     if (type === 'angry') {
+        emotionType = 'angry';
         faceAngry();
+        volume('emotionPath', 50, emotionType);
     } else if (type === "sad") {
+        emotionType = 'sad';
         faceSad();
+        volume('emotionPath', 50, emotionType);
     } else if (type === 'enjoy') {
+        emotionType = 'enjoy';
         faceSmile();
+        volume('emotionPath', 50, emotionType);
     } else {
+        emotionType = 'default';
         faceDefault();
+        volume('emotionPath', 50, emotionType);
     }
-    volume('emotionPath', 50, type);
+    //volume('emotionPath', 50, type);
 }
 
 function scaleTrigger(target) {
-    
-    if(target.classList.contains('active')){
+
+    if (target.classList.contains('active')) {
         target.classList.remove('active');
+        active = false;
         scaleOut('emotionPath', emotion);
-    }else{
+
+
+    } else {
         target.classList.add('active');
+        active = true;
+        rafID = window.requestAnimationFrame(updateAnalysers)
         scale('emotionPath', emotion);
     }
-    
+
 }
 
 function setFace() {
@@ -328,6 +344,7 @@ function circleWave(d, i, type) {
 }
 
 function volume(type, size, emotionType) {
+
     var colorSet = ["rgba(244, 67, 54,1)", "rgba(255, 166, 33,1)", "rgba(33, 150, 243,1)", "rgba(193, 69, 214,1)"];
     var edge, time, color, valley
     if (emotionType === 'angry') {
@@ -419,16 +436,23 @@ function scale(type, color) {
         .attr("stroke", transparent)
 
 }
+
 function scaleOut(type, color) {
-    leftEye.attr('fill', '#000000');
-    rightEye.attr('fill', '#000000');
-    mouth.attr('stroke', '#000000').attr("fill", "#000000");
+    cancelAnimationFrame(rafID);
+    leftEye.transition()
+        .ease(d3.easeExp)
+        .duration(500).attr('fill', '#000000');
+    rightEye.transition()
+        .ease(d3.easeExp)
+        .duration(500).attr('fill', '#000000');
+    mouth.transition()
+        .ease(d3.easeExp)
+        .duration(500).attr('stroke', '#000000').attr("fill", "#000000");
     faceSleep();
     window[type]
         .datum(function (d, i) {
             return circleWave(d, i);
         })
-
         .transition()
         .ease(d3.easeExp)
         .duration(500)
@@ -453,3 +477,80 @@ function scaleOut(type, color) {
 //     "easeBack"
 //     ];
 
+
+window.AudioContext = window.AudioContext || window.webkitAudioContext;
+var audioContext = new AudioContext();
+var audioInput = null,
+    realAudioInput = null,
+    inputPoint = null,
+    audioRecorder = null;
+var rafID = null;
+var analyserContext = null;
+var canvasWidth, canvasHeight;
+var recIndex = 0;
+
+
+if (!navigator.getUserMedia)
+    navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+if (!navigator.cancelAnimationFrame)
+    navigator.cancelAnimationFrame = navigator.webkitCancelAnimationFrame || navigator.mozCancelAnimationFrame;
+if (!navigator.requestAnimationFrame)
+    navigator.requestAnimationFrame = navigator.webkitRequestAnimationFrame || navigator.mozRequestAnimationFrame;
+
+navigator.getUserMedia({
+    "audio": {
+        "mandatory": {
+            "googEchoCancellation": "false",
+            "googAutoGainControl": "false",
+            "googNoiseSuppression": "false",
+            "googHighpassFilter": "false"
+        },
+        "optional": []
+    },
+}, gotStream, function (e) {
+    alert('Error getting audio');
+    console.log(e);
+});
+
+function gotStream(stream) {
+    inputPoint = audioContext.createGain();
+
+    // Create an AudioNode from the stream.
+    realAudioInput = audioContext.createMediaStreamSource(stream);
+    audioInput = realAudioInput;
+    audioInput.connect(inputPoint);
+
+    //    audioInput = convertToMono( input );
+
+    analyserNode = audioContext.createAnalyser();
+    analyserNode.fftSize = 2048;
+    inputPoint.connect(analyserNode);
+
+    zeroGain = audioContext.createGain();
+    zeroGain.gain.value = 0.0;
+    inputPoint.connect(zeroGain);
+    zeroGain.connect(audioContext.destination);
+    updateAnalysers();
+}
+
+function updateAnalysers(time) {
+    {
+        var freqByteData = new Uint8Array(analyserNode.frequencyBinCount);
+        analyserNode.getByteFrequencyData(freqByteData);
+        var magnitude = 0; {
+            for (var i = 0; i < 1024; i++) {
+                magnitude += freqByteData[i];
+            }
+
+            if (active) {
+                if (magnitude > 6000) {
+                    var volumeApi = magnitude / 100;
+                    volume('emotionPath', volumeApi, emotionType);
+                }
+            }
+
+        }
+    }
+
+    rafID = window.requestAnimationFrame(updateAnalysers)
+}
