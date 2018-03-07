@@ -47,6 +47,10 @@ function setFace() {
         .attr("d", ["M21.6,12.8L21.6,12.8c-1,0-1.9-0.8-1.9-1.9v0c0-1,0.8-1.9,1.9-1.9h0c1,0,1.9,0.8,1.9,1.9v0C23.4,11.9,22.6,12.8,21.6,12.8z"])
     mouth = facePath.append("g").attr("id", "mouth").append('path')
         .attr("d", ["M15.2,22.7h-0.4c-0.5,0-0.9-0.4-0.9-0.9v-1.9h2.2v1.9C16.1,22.3,15.7,22.7,15.2,22.7z"])
+        .attr("stroke-width",2)
+        .attr("stroke-linecap","round")
+        .attr("stroke-linejoin","round")
+        .attr("stroke-miterlimit",20)
 }
 
 function faceSleep() {
