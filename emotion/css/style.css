@@ -22,6 +22,57 @@ body {
     overflow: hidden;
 }
 
+.title {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.title span {
+    display: inline-block;
+    color: #fff;
+    vertical-align: middle;
+    opacity: 0.7;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 34px;
+    height: 34px;
+    margin-top: -5px;
+}
+
+.title .logo {
+    display: inline-block;
+    width: 100px;
+    height: 34px;
+    margin-left: 2px;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.title .logo svg {
+    width: 100%;
+    stroke-dasharray: 100, 100;
+    stroke-dashoffset: 70;
+    animation: logo-animation 1.5s ease-out;
+}
+
+.logo-svg {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+}
+
+@keyframes logo-animation {
+    0% {
+        stroke-dashoffset: 100;
+    }
+    100% {
+        stroke-dashoffset: 70;
+    }
+}
 body.desk {
     background-color: #d2d7d6;
 }
