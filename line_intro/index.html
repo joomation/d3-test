@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/snap.svg-min.js"></script>
+    <title>Document</title>
+    <style>
+        svg {
+            position: absolute;
+            width: 150px;
+            top: 200px;
+            /* animation:bounce1 ease 3s infinite */
+        }
+
+        @keyframes bounce1 {
+            0% {
+                transform: translate(0, 0)
+            }
+
+            50% {
+                transform: translate(25px, 50px)
+            }
+
+            100% {
+                transform: translate(50px, 0)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="svg" x="0px" y="0px" viewBox="0 0 192 192">
+        <!--
+        <g id="intro">
+            <path d="M166,166H26V96V26h140v70V166z"/>
+        </g>
+        <g id="left">
+                <path d="M77.6,181.6l-65.1-65.1c0,0,12-26.2,42.4-56.6c27.6-27.6,56.6-42.4,56.6-42.4l65.1,65.1c0,0-28.3,14.1-56.6,42.4
+           C88.2,156.8,77.6,181.6,77.6,181.6z" />
+        </g>
+        <g id="center">
+            <path d="M131,84H61V50.5V17h70v33.5V84z"/>
+        </g>
+        <g id="right">
+                <path d="M111.5,181.6l65.1-65.1c0,0-12-26.2-42.4-56.6c-27.6-27.6-56.6-42.4-56.6-42.4L12.5,82.6c0,0,28.3,14.1,56.6,42.4C100.9,156.8,111.5,181.6,111.5,181.6z" />
+        </g> -->
+    </svg>
+    <script>
+        var ball = Snap('#svg');
+        var initialMatrix = new Snap.Matrix();
+        initialMatrix.translate(0,0);
+        initialMatrix.rotate(0)
+        ball.attr({
+            transform:initialMatrix
+        })
+        var ballPath = ball.path(
+            "M158.5,157.8h-125c0,0,0-29.7,0-61.8c0-37.9,0-63.2,0-63.2h125c0,0,0,25.2,0,62.5C158.5,127.8,158.5,157.8,158.5,157.8z");
+
+        var x = 40;
+        var r = 0;
+        move()
+        bounce()
+
+        function move() {
+            
+            r = 90;
+            var startMatrix = new Snap.Matrix();
+            startMatrix.translate(x, -100);
+            startMatrix.rotate(r);
+            var finishMatrix = new Snap.Matrix();
+            finishMatrix.translate(x + 40, 0);
+            finishMatrix.rotate(r + 90);
+            ball.animate({
+                transform: startMatrix
+            }, 1000, mina.backin, function () {
+                ball.animate({
+                    transform: finishMatrix
+
+                }, 1000, mina.bounce, function () {
+                    var finishMatrix = new Snap.Matrix();
+                    finishMatrix.translate(x+40,0)
+                    finishMatrix.rotate(0);
+                    ball.attr({
+                        transform:finishMatrix
+                    })
+                    x += 80;
+                    move()
+
+                })
+            })
+        }
+
+        function bounce() {
+            ballPath.animate({
+                d: `M171,169.2l-120,20c0,0-30-44-30-91.6C21,41.4,51,3.8,51,3.8l119,20c0,0-24,17.3-24,72.7C146,144.7,171,169.2,171,169.2z`,
+            }, 1000, mina.backin, function () {
+                ballPath.animate({
+                    d: `M158.5,157.8h-125c0,0,0-29.7,0-61.8c0-37.9,0-63.2,0-63.2h125c0,0,0,25.2,0,62.5C158.5,127.8,158.5,157.8,158.5,157.8z`,
+                }, 1000, mina.bounce, function () {
+                    return bounce()
+                })
+            });
+        }
+    </script>
+</body>
+
+</html>
