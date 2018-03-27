@@ -20,15 +20,20 @@
 </head>
 
 <body>
+    <svg id="flowers" x="0px" y="0px" viewBox="0 0 137.5 90"></svg>
     <svg id="rabbit" x="0px" y="0px" viewBox="0 0 460 460"></svg>
     <svg id="butterfly" x="0px" y="0px" viewBox="0 0 40 40"></svg>
     <script src="js/rabbit.js"></script>
     <script src="js/butterfly.js"></script>
+    <script src="js/flowers.js"></script>
     <script>
         //rabbit.play();
-        //butterfly.play();
-        var butterfly2=new butterfly();
-        butterfly2.butterfly.play()
+        // var butterfly2=new butterfly();
+        // butterfly2.butterfly.play()
+        var flowers=new flowers("#flowers");
+        console.log(flowers)
+        flowers.flowers.play()
+
     </script>
 </body>
 
