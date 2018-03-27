@@ -66,46 +66,49 @@ function flowers(id) {
             this.motion(stemGroup, flowers1_1, flowers1_2, flowers2_1, flowers2_2, flowers2_3, flowers3_1, flowers3_2, flowers4_1, flowers4_2, flowers4_3)
         },
         initMotion:function(stemGroup, flowers1_1, flowers1_2, flowers2_1, flowers2_2, flowers2_3, flowers3_1, flowers3_2, flowers4_1, flowers4_2, flowers4_3){
-            stemGroup.animate({
-                strokeDashoffset: 70
-            }, 800, mina.easeinout)
+            
             flowers1_1.animate({
                 transform: `translate(${flowers1_1.getBBox().cx},${flowers1_1.getBBox().cy}) scale(0)`
-            }, 800, mina.easeinout)
+            }, 1000, mina.easeinout)
             flowers1_2.animate({
                 transform: `translate(${flowers1_2.getBBox().cx},${flowers1_2.getBBox().cy}) scale(0)`
-            }, 800, mina.easeinout)
+            }, 1000, mina.easeinout)
             flowers2_1.animate({
                 transform: `translate(${flowers2_1.getBBox().cx},${flowers2_1.getBBox().cy}) scale(0)`
-            }, 800, mina.easeinout)
+            }, 1000, mina.easeinout)
             flowers2_2.animate({
                 transform: `translate(${flowers2_2.getBBox().cx-5.5},${flowers2_2.getBBox().cy-48}) rotate(45)`,
-            }, 800, mina.easeinout)
+            }, 1000, mina.easeinout)
             flowers2_3.animate({
                 transform: `translate(${flowers2_3.getBBox().cx-58},${flowers2_3.getBBox().cy+15.5}) rotate(-45)`,
-            }, 800, mina.easeinout)
+            }, 1000, mina.easeinout)
             flowers3_1.animate({
                 transform: `translate(${flowers3_1.getBBox().cx},${flowers3_1.getBBox().cy}) scale(0)`
-            }, 800, mina.easeinout)
+            }, 1000, mina.easeinout)
             flowers3_2.animate({
                 transform: `translate(${flowers3_2.getBBox().cx},${flowers3_2.getBBox().cy}) scale(0)`
-            }, 800, mina.easeinout)
+            }, 1000, mina.easeinout)
             flowers4_1.animate({
                 transform: `translate(${flowers4_1.getBBox().cx},${flowers4_1.getBBox().cy}) scale(0)`
-            }, 800, mina.easeinout)
+            }, 1000, mina.easeinout)
             flowers4_2.animate({
                 transform: `translate(${flowers4_2.getBBox().cx},${flowers4_2.getBBox().cy}) scale(0)`
-            }, 800, mina.easeinout)
+            }, 1000, mina.easeinout)
             flowers4_3.animate({
                 transform: `translate(${flowers4_3.getBBox().cx},${flowers4_3.getBBox().cy}) scale(0)`
-            }, 800, mina.easeinout,()=>{
-                this.motion(stemGroup, flowers1_1, flowers1_2, flowers2_1, flowers2_2, flowers2_3, flowers3_1, flowers3_2, flowers4_1, flowers4_2, flowers4_3)
+            }, 1000, mina.easeinout,()=>{
+                stemGroup.animate({
+                    strokeDashoffset: 70
+                }, 1000, mina.easeinout,()=>{
+                    this.motion(stemGroup, flowers1_1, flowers1_2, flowers2_1, flowers2_2, flowers2_3, flowers3_1, flowers3_2, flowers4_1, flowers4_2, flowers4_3)
+
+                })
             })
         },
         motion: function (stemGroup, flowers1_1, flowers1_2, flowers2_1, flowers2_2, flowers2_3, flowers3_1, flowers3_2, flowers4_1, flowers4_2, flowers4_3) {
             stemGroup.animate({
                 strokeDashoffset: 140
-            }, 800, mina.easeinout, () => {
+            }, 1000, mina.easeinout, () => {
                 flowers1_1.animate({
                     transform: 'scale(1)'
                 }, 1000, mina.bounce);
