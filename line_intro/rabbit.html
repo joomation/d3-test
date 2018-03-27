@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/snap.svg-min.js"></script>
+    <title>Document</title>
+    <style>
+        svg {
+            position: absolute;
+            width: 400PX;
+            top: 200px;
+        }
+        #butterfly{
+            width:50px;
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="rabbit" x="0px" y="0px" viewBox="0 0 460 460"></svg>
+    <svg id="butterfly" x="0px" y="0px" viewBox="0 0 40 40"></svg>
+    <script src="js/rabbit.js"></script>
+    <script src="js/butterfly.js"></script>
+    <script>
+        //rabbit.play();
+        //butterfly.play();
+        var butterfly2=new butterfly();
+        butterfly2.butterfly.play()
+    </script>
+</body>
+
+</html>
