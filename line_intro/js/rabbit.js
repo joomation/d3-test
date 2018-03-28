@@ -14,10 +14,12 @@ var rabbit = {
         );
         var svgFlowPath2 = this.svg.path(`M379.6,348.8c-27.1,0-58.3-14.4-82-37.5`);
         var svgFlowGroup = this.svg.group(svgFlowPath1, svgFlowPath2);
-
+        svgPath.attr({
+            fill:'#940094'
+        })
         svgFlowGroup.attr({
             fill: 'none',
-            stroke: '#000',
+            stroke: '#ffffff',
             strokeWidth: 3,
             strokeLinecap: 'round',
             strokeMiterlimit: 10,

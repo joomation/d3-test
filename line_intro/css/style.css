@@ -1,0 +1,53 @@
+html,body{
+    width:100%;
+    height:100%;
+    overflow: hidden;
+    margin:0;
+    padding:0;
+}
+body{
+    
+}
+.background{
+    position: relative;;
+    width:100%;
+    height:100%;
+    background: #000842;
+}
+svg {
+    position: absolute;
+
+}
+.rabbit{
+    width:400px;
+    bottom:16px;
+    mix-blend-mode: color-dodge;
+    left:0;
+}
+.butterfly{
+    width:100px;
+    mix-blend-mode: color-dodge;
+    bottom:300px;
+}
+.flowers{
+    width:500px;
+    mix-blend-mode: color-dodge;
+    bottom:150px;
+    right:150px;
+}
+.light{
+    width:100%;
+    top:100px;
+    right:0px;
+    height: 100%;
+    mix-blend-mode: screen
+}
+.ground{
+    position: absolute;
+    height:150px;
+    width: 100%;
+    background: #000842;
+    border-top:3px solid #fff;
+   bottom:0;
+   left:0;
+}

@@ -17,7 +17,8 @@ function butterfly() {
 
             moveWing.translate(this.min, 0);
             this.svg.attr({
-                transform: moveWing
+                transform: moveWing,
+                fill:`#940094`
             })
             this.move();
             this.motion(svgPath1, svgPath2);

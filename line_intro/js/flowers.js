@@ -56,10 +56,10 @@ function flowers(id) {
             var stemGroup = this.svg.group(stem1, stem2, stem3, stem4);
             var flowersGroup = this.svg.group(flowers1_1, flowers1_2, flowers2_1, flowers2_2, flowers2_3, flowers3_1, flowers3_2, flowers4_1, flowers4_2, flowers4_3);
             flowersGroup.attr({
-                stroke: '#000',
+                fill: '#940094',
             })
             stemGroup.attr({
-                stroke: '#000',
+                stroke: '#940094',
                 strokeDasharray: 70,
                 strokeDashoffset: 70
             });

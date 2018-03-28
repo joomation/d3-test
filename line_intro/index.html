@@ -5,38 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/snap.svg-min.js"></script>
     <title>Document</title>
-    <style>
-        svg {
-            position: absolute;
-            width: 400PX;
-            top: 200px;
-        }
-        #butterfly{
-            width:100px;
-        }
-        #flowers{
-            width:500px
-        }
-    </style>
+
 </head>
 
 <body>
-    <svg id="flowers" x="0px" y="0px" viewBox="0 0 137.5 90"></svg>
-    <svg id="rabbit" x="0px" y="0px" viewBox="0 0 460 460"></svg>
-    <svg id="butterfly" x="0px" y="0px" viewBox="0 0 40 40"></svg>
+    <div class="background">
+        <svg class="light" id="light" x="0px" y="0px" ></svg>
+        <svg class="flowers" id="flowers" x="0px" y="0px" viewBox="0 0 137.5 90"></svg>
+        <svg class="rabbit" id="rabbit" x="0px" y="0px" viewBox="0 0 460 460"></svg>
+        <svg class="butterfly" id="butterfly" x="0px" y="0px" viewBox="0 0 40 40"></svg>
+        <div class="ground"></div>
+    </div>
     <script src="js/rabbit.js"></script>
     <script src="js/butterfly.js"></script>
     <script src="js/flowers.js"></script>
+    <script src="js/light.js"></script>
     <script>
         rabbit.play();
-        var butterfly2=new butterfly();
-        butterfly2.butterfly.play()
+        var butterfly=new butterfly();
+        butterfly.butterfly.play()
         var flowers=new flowers("#flowers");
-        console.log(flowers)
         flowers.flowers.play()
-
+        var light = new light("#light");
+        light.light.play()
     </script>
 </body>
 
