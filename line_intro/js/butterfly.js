@@ -1,11 +1,11 @@
-function butterfly() {
+function butterfly(id) {
     
     this.butterfly = {
-        svg: Snap('#butterfly'),
+        svg: Snap(id),
         x: 0,
         y: 0,
         min: 0,
-        max: document.documentElement.clientWidth - 50,
+        max: document.documentElement.clientWidth - 150,
         play: function () {
             var svgPath1 = this.svg.path(`M20,0v30L0.1,15L20,0z`);
             var svgPath2 = this.svg.path(`M20,0v30L0.1,15L20,0z`);
@@ -14,8 +14,8 @@ function butterfly() {
                 transform: 'rotate(-125deg) translate(-15,0)'
             })
             var moveWing = new Snap.Matrix();
-
-            moveWing.translate(this.min, 0);
+            this.x=this.x-this.min;
+            moveWing.translate(-this.x, 0);
             this.svg.attr({
                 transform: moveWing,
                 fill:`#940094`
@@ -24,22 +24,20 @@ function butterfly() {
             this.motion(svgPath1, svgPath2);
         },
         move: function () {
-            if (Math.abs(this.x-this.min) > this.max) {
-                setTimeout(()=>{
+            this.max=document.documentElement.clientWidth - 150;
+            if (Math.abs(this.x) > this.max) {
                     var moveWing = new Snap.Matrix();
                     this.x=0;
                     moveWing.translate(this.x, 0);
                     this.svg.attr({
                         transform: moveWing
-                    })
-                    return this.move();
-                })
-                
+                    })                
             }
+                
                 this.x -= Math.floor(Math.random() * (20 - 0)) + 0;
                 var moveWing = new Snap.Matrix();
                 this.y = Math.random() * (50 - (-50)) + (-50);
-                moveWing.translate(-(this.x-this.min), this.y);
+                moveWing.translate(-(this.x), this.y);
                 this.svg.animate({
                     transform: moveWing
                 }, 1000, mina.linear, ()=> {
