@@ -17,12 +17,16 @@
         <svg class="flowers" id="flowers" x="0px" y="0px" viewBox="0 0 137.5 90"></svg>
         <svg class="rabbit" id="rabbit" x="0px" y="0px" viewBox="0 0 460 460"></svg>
         <svg class="butterfly" id="butterfly" x="0px" y="0px" viewBox="0 0 40 40"></svg>
+        <svg class="main-tree" id="main-tree" viewBox="0 0 215 500"></svg>
+        <svg class="sub-trees" id="sub-trees" viewBox="0 0 580 500"></svg>
         <div class="ground"></div>
     </div>
     <script src="js/rabbit.js"></script>
     <script src="js/butterfly.js"></script>
     <script src="js/flowers.js"></script>
     <script src="js/light.js"></script>
+    <script src="js/subTrees.js"></script>
+    <script src="js/mainTree.js"></script>
     <script>
         rabbit.play();
         var butterfly=new butterfly();
@@ -31,6 +35,10 @@
         flowers.flowers.play()
         var light = new light("#light");
         light.light.play()
+        var mainTree=new mainTree('#main-tree');
+        mainTree.mainTree.play()
+        var subTrees=new subTrees('#sub-trees');
+        subTrees.subTrees.play()
     </script>
 </body>
 

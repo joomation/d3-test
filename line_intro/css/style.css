@@ -42,6 +42,15 @@ svg {
     height: 100%;
     mix-blend-mode: screen
 }
+.main-tree{
+    height:90%;
+    top:0;
+    right:-20px;
+}
+.sub-trees{
+    height:100%;
+    left:50px;
+}
 .ground{
     position: absolute;
     height:150px;
