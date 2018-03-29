@@ -28,9 +28,12 @@ function cloud(id) {
                fill:mainColor,
                opacity:0.3
            })
+           this.motion(cloudGroup)
         },
-        motion: function (eyes) {
-            
+        motion: function (cloudGroup) {
+            cloudGroup.animate({
+                opacity:0.3
+            },500)
         }
     }
 }

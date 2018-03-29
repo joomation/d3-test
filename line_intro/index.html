@@ -14,14 +14,34 @@
 <body>
     <div class="background">
         <div class="title-wrap">
-            <div class="step_1">
+            <div id="page_1" class="content active">
                 <h1>Hello</h1>
-                <p>저는 인터랙션 디자인팀에 지원한 이주형입니다.</p>
+                <p>인터랙션 디자인팀 지원자 이주형입니다.</p>
+                <span class="btn-start" onclick="page('second')">
+                    <svg x="0px" y="0px" viewBox="0 0 30 30">
+                        <path class="st0" d="M1.5,15h26.3 M21.2,21.6l6.6-6.6l-6.6-6.6" />
+                    </svg>
+                </span>
             </div>
-        </div>
-        <svg class="background-svg" id="background" x="0px" y="0px" viewBox="0 0 1214.3 463.9"></svg>
+            <div id="page_2" class="content">
+                <h1 id="question">나를 보면 어떤 동물이 생각나?</h1>
+                <span class="btn-start" onclick="page('third')">
+                    <svg x="0px" y="0px" viewBox="0 0 30 30">
+                        <path class="st0" d="M1.5,15h26.3 M21.2,21.6l6.6-6.6l-6.6-6.6" />
+                    </svg>
+                </span>
+                <span class="btn-explore">Explore</span>
+            </div>
 
+
+        </div>
+        <svg class="background-svg" id="background" x="0px" y="0px" viewBox="0 0 400 256"></svg>
         <svg class="cloud" id="cloud" x="0px" y="0px" viewBox="0 0 595 500"></svg>
+        <div class="lighten">
+            
+            <svg class="main-tree" id="main-tree" viewBox="0 0 243.3 643"></svg>
+        </div>
+        
         <svg class="light" id="light" x="0px" y="0px"></svg>
         <svg class="flowers" id="flowers" x="0px" y="0px" viewBox="0 0 137.5 90"></svg>
         <svg class="rabbit" id="rabbit" x="0px" y="0px" viewBox="0 0 460 460"></svg>
@@ -29,10 +49,11 @@
 
         <svg class="butterfly" id="butterfly" x="0px" y="0px" viewBox="0 0 40 40"></svg>
         <svg class="butterfly" id="butterfly2" x="0px" y="0px" viewBox="0 0 40 40"></svg>
-        <svg class="main-tree" id="main-tree" viewBox="0 0 243.3 643"></svg>
+        
         <svg class="sub-trees" id="sub-trees" viewBox="0 0 580 500"></svg>
         <!-- <div class="ground"></div> -->
     </div>
+    <script src="js/shuffle.js"></script>
     <script src="js/background.js"></script>
     <script src="js/cloud.js"></script>
     <script src="js/rabbit.js"></script>
@@ -44,12 +65,32 @@
     <script>
         var mainColor = "#916afb";
         var mainBack = "#000842";
-        var backgroundObj = new background('#background');
-        backgroundObj.background.play();
-        var cloudObj = new cloud('#cloud');
-        cloudObj.cloud.play();
-        var mainTreeObj = new mainTree('#main-tree');
-        mainTreeObj.mainTree.play()
+
+        function page(page) {
+            var backgroundObj = new background('#background');
+            var cloudObj = new cloud('#cloud');
+            var mainTreeObj = new mainTree('#main-tree');
+
+
+            var first = document.getElementById("page_1");
+            var second = document.getElementById("page_2");
+            if (page === 'second') {
+                first.classList.remove('active');
+                second.classList.add('active');
+                var headText = new WordShuffler(question, {
+                    textColor: '#222',
+                    timeOffset: 1,
+                    mixCapital: true,
+                    mixSpecialCharacters: true
+                });
+            }else if(page==='third'){
+                second.classList.add('next')
+                backgroundObj.background.play();
+                cloudObj.cloud.play();
+                mainTreeObj.mainTree.play()
+            }
+        }
+
         // var rabbitObj=new rabbit('#rabbit');
         // rabbitObj.rabbit.play();
         // var rabbitObj2=new rabbit('#rabbit2');

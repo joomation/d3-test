@@ -1,102 +1,167 @@
-html,body{
-    width:100%;
-    height:100%;
+html,
+body {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
-*{
-    color:#000842;
-    margin:0;
-    padding:0;
+
+* {
+    color: #000842;
+    margin: 0;
+    padding: 0;
 }
-body{
-    font-family: "SF Pro KR","SF Pro Text","Yoon Gothic","Myriad Set Pro",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","SF Pro Icons","Apple Legacy Icons","Apple Gothic","HY Gulim","MalgunGothic","HY Dotum","Lexi Gulim","Helvetica Neue","Helvetica","Arial",sans-serif;
-    background:#fff;
+
+body {
+    font-family: "SF Pro KR", "SF Pro Text", "Yoon Gothic", "Myriad Set Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro Icons", "Apple Legacy Icons", "Apple Gothic", "HY Gulim", "MalgunGothic", "HY Dotum", "Lexi Gulim", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+    background: #fff;
 }
-.background{
-    position: relative;;
-    width:100%;
-    height:100%;
+.btn-start{
+    width: 100px;
+    display: block;
+    margin: 50px 0 0 0;
+    cursor: pointer;
 }
-.background-svg{
-    height:100%;
-    right:0;
+.btn-start svg {
+    position: relative;
+    width: 65px;
+    fill: none;
+    stroke: #000000;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 10;
+    stroke-width: 0.7px;
 }
-.background.dark{
-    background: #000842;
+#page_1{
+
 }
-.title-wrap{
+#page_2 .btn-explore{
+display: none;
+}
+
+#page_2.next .btn-explore{
+    display: inline-block;
+}
+#page_2.next .btn-start{
+    display: none;
+}
+.title-wrap {
     position: absolute;
-   left:100px;
-    top:30%;
+    left: 100px;
+    top: 30%;
+    z-index: 10;
 }
-.title-wrap h1{
-    color:#222;
+.title-wrap .content{
+    display: none;
+}
+.title-wrap .content.active{
+    display: block;
+}
+.title-wrap h1 {
+    color: #222;
     font-size: 70px;
     font-weight: 700
 }
-.title-wrap p{
-    font-size: 24px;
-    color:#888;
-    margin-top:20px;
+.title-wrap p {
+    font-size: 28px;
+    color: #888;
+    margin-top: 20px;
 }
+.btn-explore{padding: 10px 45px;font-size: 28px;background: linear-gradient(125deg, rgb(242, 126, 252) 0%, rgb(145, 106, 252) 100%);display: inline-block;border-radius: 50px;color: #fff;margin-top: 40px;text-transform: uppercase;}
+.background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.background-svg {
+    width: 1900px;
+    right: 0;
+}
+#question{
+    opacity: 0;
+}
+#question span:nth-child(6){
+    display: block;
+}
+.background.dark {
+    background: #000842;
+}
+
+
+
 svg {
     position: absolute;
+}
 
+.cloud {
+    width: 930px;
+    top: 0px;
+    right: 70px;
 }
-.cloud{
-    width:750px;
-    top:0px;
-    right:70px;
+
+.owl {
+    min-width: 250px;
+    width: 300px;
+    right: 300px;
+    top: 150px;
 }
-.owl{
-    min-width:250px;
-    width:300px;
-    right:300px;
-    top:150px;
-}
-.rabbit{
-    width:600px;
-    bottom:16px;
+
+.rabbit {
+    width: 600px;
+    bottom: 16px;
     mix-blend-mode: color-dodge;
-    left:0;
+    left: 0;
 }
-.butterfly{
-    width:100px;
+
+.butterfly {
+    width: 100px;
     mix-blend-mode: color-dodge;
-    bottom:300px;
+    bottom: 300px;
 }
-.flowers{
-    width:500px;
+
+.flowers {
+    width: 500px;
     mix-blend-mode: color-dodge;
-    bottom:150px;
-    right:150px;
+    bottom: 150px;
+    right: 150px;
 }
-.light{
-    width:100%;
-    top:100px;
-    right:0px;
+
+.light {
+    width: 100%;
+    top: 100px;
+    right: 0px;
     height: 100%;
     mix-blend-mode: screen
 }
-.main-tree{
-    width:800px;
-    top:0px;
-    transform: translate(0px,-100px);
-    right:0px;
+
+.main-tree {
+    width: 850px;
+    top: 0px;
+    transform: translate(0px, -100px);
+    right: 0px;
     clip-path: url(#myClip);
 }
-.sub-trees{
-    height:100%;
-    left:50px;
+.lighten{
+    mix-blend-mode: lighten;
 }
-.ground{
+.main-tree polygon{
+
+}
+
+.sub-trees {
+    height: 100%;
+    left: 50px;
+}
+
+.ground {
     position: absolute;
-    height:150px;
+    height: 150px;
     width: 100%;
     background: #000842;
-    border-top:3px solid #fff;
-   bottom:0;
-   left:0;
+    border-top: 3px solid #fff;
+    bottom: 0;
+    left: 0;
 }

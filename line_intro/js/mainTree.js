@@ -27,7 +27,9 @@ function mainTree(id) {
                 strokeWidth:1.5,
                 strokeLinecap:'round',
                 strokeLinejoin:'round',
-                strokeMiterlimit:10
+                strokeMiterlimit:10,
+                strokeDasharray:300,
+                strokeDashoffset:300
             })
             eyes.attr({
                 fill:mainBack
@@ -43,29 +45,37 @@ function mainTree(id) {
             var treePath=this.svg.polygon(`266.3,645.4 209.1,645.4 165.4,645.4 165.4,-7.4 209.5,-7.4 266.3,-7.4`);
             var treeStem=this.svg.path(`M176.7,233.6H18.2L6.6,222 M108.3,233.6L90.9,251 M18.2,233.6l-8.7,8.7 M35.5,206.4l27.2,27.2`);
             treePath.attr({
-                fill:'#fff',
+                fill:'rgba(145, 106, 252,0.5)',
             })
             treeStem.attr({
                 fill:'none',
-                stroke:'#fff',
-                
-                strokeWidth:3,
+                stroke:mainColor,
+                strokeWidth:2,
                 strokeLinecap:'round',
                 strokeLinejoin:'round',
                 strokeMiterlimit:10
             });
             //this.motion(eyesLine);
+            setTimeout(()=>{
+                this.appear(owlGroup)
+            },1000)
+        },
+        appear:function(owlGroup){
+            owlGroup.animate({
+                strokeDashoffset:0
+            },1000,mina.easeout);
         },
         motion: function (eyesLine) {
-            var scaleMatrix = new Snap.Matrix();
             eyesLine.animate({
                 d:`M79.4,123.5c0,0.8-3.3,1.5-7.3,1.5s-7.3-0.7-7.3-1.5s3.3-1.5,7.3-1.5S79.4,122.7,79.4,123.5z M101.1,122.1
                 c4,0,7.3,0.7,7.3,1.5s-3.3,1.5-7.3,1.5c-4,0-7.3-0.7-7.3-1.5S97.1,122.1,101.1,122.1z`
             },100,mina.linear,()=>{
+                
                 eyesLine.animate({
                     d:`M79.4,123.5c0,4-3.3,7.3-7.3,7.3s-7.3-3.3-7.3-7.3s3.3-7.3,7.3-7.3S79.4,119.5,79.4,123.5z M101.1,116.2
                     c4,0,7.3,3.3,7.3,7.3s-3.3,7.3-7.3,7.3c-4,0-7.3-3.3-7.3-7.3S97.1,116.2,101.1,116.2z`
                 },500,mina.bounce,()=>{
+                    
                     setTimeout(()=>{
                         this.motion(eyesLine)
                     },500)
