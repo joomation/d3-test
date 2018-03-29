@@ -13,17 +13,28 @@
 
 <body>
     <div class="background">
-        <svg class="light" id="light" x="0px" y="0px" ></svg>
+        <div class="title-wrap">
+            <div class="step_1">
+                <h1>Hello</h1>
+                <p>저는 인터랙션 디자인팀에 지원한 이주형입니다.</p>
+            </div>
+        </div>
+        <svg class="background-svg" id="background" x="0px" y="0px" viewBox="0 0 1214.3 463.9"></svg>
+
+        <svg class="cloud" id="cloud" x="0px" y="0px" viewBox="0 0 595 500"></svg>
+        <svg class="light" id="light" x="0px" y="0px"></svg>
         <svg class="flowers" id="flowers" x="0px" y="0px" viewBox="0 0 137.5 90"></svg>
         <svg class="rabbit" id="rabbit" x="0px" y="0px" viewBox="0 0 460 460"></svg>
         <svg class="rabbit" id="rabbit2" x="0px" y="0px" viewBox="0 0 460 460"></svg>
 
         <svg class="butterfly" id="butterfly" x="0px" y="0px" viewBox="0 0 40 40"></svg>
         <svg class="butterfly" id="butterfly2" x="0px" y="0px" viewBox="0 0 40 40"></svg>
-        <svg class="main-tree" id="main-tree" viewBox="0 0 215 500"></svg>
+        <svg class="main-tree" id="main-tree" viewBox="0 0 243.3 643"></svg>
         <svg class="sub-trees" id="sub-trees" viewBox="0 0 580 500"></svg>
-        <div class="ground"></div>
+        <!-- <div class="ground"></div> -->
     </div>
+    <script src="js/background.js"></script>
+    <script src="js/cloud.js"></script>
     <script src="js/rabbit.js"></script>
     <script src="js/butterfly.js"></script>
     <script src="js/flowers.js"></script>
@@ -31,28 +42,35 @@
     <script src="js/subTrees.js"></script>
     <script src="js/mainTree.js"></script>
     <script>
-        var rabbitObj=new rabbit('#rabbit');
-        rabbitObj.rabbit.play();
-        var rabbitObj2=new rabbit('#rabbit2');
-        rabbitObj2.rabbit.min=400;
-        setTimeout(()=>{
-            rabbitObj2.rabbit.play();
-        },500)
-        
-        var butterObj=new butterfly('#butterfly');
-        butterObj.butterfly.play();
-        var butterObj2=new butterfly('#butterfly2');
-        butterObj2.butterfly.min=900;
-        butterObj2.butterfly.play()
-
-        var flowersObj=new flowers("#flowers");
-        flowersObj.flowers.play()
-        var lightObj = new light("#light");
-        lightObj.light.play()
-        var mainTreeObj=new mainTree('#main-tree');
+        var mainColor = "#916afb";
+        var mainBack = "#000842";
+        var backgroundObj = new background('#background');
+        backgroundObj.background.play();
+        var cloudObj = new cloud('#cloud');
+        cloudObj.cloud.play();
+        var mainTreeObj = new mainTree('#main-tree');
         mainTreeObj.mainTree.play()
-        var subTreesObj=new subTrees('#sub-trees');
-        subTreesObj.subTrees.play()
+        // var rabbitObj=new rabbit('#rabbit');
+        // rabbitObj.rabbit.play();
+        // var rabbitObj2=new rabbit('#rabbit2');
+        // rabbitObj2.rabbit.min=400;
+        // setTimeout(()=>{
+        //     rabbitObj2.rabbit.play();
+        // },500)
+
+        // var butterObj=new butterfly('#butterfly');
+        // butterObj.butterfly.play();
+        // var butterObj2=new butterfly('#butterfly2');
+        // butterObj2.butterfly.min=900;
+        // butterObj2.butterfly.play()
+
+        // var flowersObj=new flowers("#flowers");
+        // flowersObj.flowers.play()
+        // var lightObj = new light("#light");
+        // lightObj.light.play()
+
+        // var subTreesObj=new subTrees('#sub-trees');
+        // subTreesObj.subTrees.play()
     </script>
 </body>
 
