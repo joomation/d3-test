@@ -17,12 +17,16 @@ body {
     font-family: "SF Pro KR", "SF Pro Text", "Yoon Gothic", "Myriad Set Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro Icons", "Apple Legacy Icons", "Apple Gothic", "HY Gulim", "MalgunGothic", "HY Dotum", "Lexi Gulim", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
     background: #fff;
 }
-.btn-start{
+svg {
+    position: absolute;
+}
+.btn-start {
     width: 100px;
     display: block;
     margin: 50px 0 0 0;
     cursor: pointer;
 }
+
 .btn-start svg {
     position: relative;
     width: 65px;
@@ -33,127 +37,38 @@ body {
     stroke-miterlimit: 10;
     stroke-width: 0.7px;
 }
-#page_1{
-
+.perspective-wrap{
+    perspective: 2000px;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
-#page_2 .btn-explore{
-display: none;
-}
-
-#page_2.next .btn-explore{
-    display: inline-block;
-}
-#page_2.next .btn-start{
-    display: none;
-}
-.title-wrap {
+.perspective-wrap > div{
+    transform-style: preserve-3d;
     position: absolute;
-    left: 100px;
-    top: 30%;
-    z-index: 10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
 }
-.title-wrap .content{
-    display: none;
+.background.pers{
+    transform: rotateX(49deg) rotateY(0) rotateZ(-37deg) scale(0.7) translate3d(0,0px,0);
 }
-.title-wrap .content.active{
-    display: block;
-}
-.title-wrap h1 {
-    color: #222;
-    font-size: 70px;
-    font-weight: 700
-}
-.title-wrap p {
-    font-size: 28px;
-    color: #888;
-    margin-top: 20px;
-}
-.btn-explore{padding: 10px 45px;font-size: 28px;background: linear-gradient(125deg, rgb(242, 126, 252) 0%, rgb(145, 106, 252) 100%);display: inline-block;border-radius: 50px;color: #fff;margin-top: 40px;text-transform: uppercase;}
+
 .background {
     position: relative;
     width: 100%;
     height: 100%;
     background: #fff;
+    transition: background 0.3s;
+    overflow: hidden;
 }
 
-.background-svg {
-    width: 1900px;
-    right: 0;
-}
-#question{
+/* page-first --start*/
+
+#question {
     opacity: 0;
-}
-#question span:nth-child(6){
-    display: block;
-}
-.background.dark {
-    background: #000842;
-}
-
-
-
-svg {
-    position: absolute;
-}
-
-.cloud {
-    width: 930px;
-    top: 0px;
-    right: 70px;
-}
-
-.owl {
-    min-width: 250px;
-    width: 300px;
-    right: 300px;
-    top: 150px;
-}
-
-.rabbit {
-    width: 600px;
-    bottom: 16px;
-    mix-blend-mode: color-dodge;
-    left: 0;
-}
-
-.butterfly {
-    width: 100px;
-    mix-blend-mode: color-dodge;
-    bottom: 300px;
-}
-
-.flowers {
-    width: 500px;
-    mix-blend-mode: color-dodge;
-    bottom: 150px;
-    right: 150px;
-}
-
-.light {
-    width: 100%;
-    top: 100px;
-    right: 0px;
-    height: 100%;
-    mix-blend-mode: screen
-}
-
-.main-tree {
-    width: 850px;
-    top: 0px;
-    transform: translate(0px, -100px);
-    right: 0px;
-    clip-path: url(#myClip);
-}
-.lighten{
-    mix-blend-mode: lighten;
-}
-.main-tree polygon{
-
-}
-
-.sub-trees {
-    height: 100%;
-    left: 50px;
 }
 
 .ground {
@@ -164,4 +79,220 @@ svg {
     border-top: 3px solid #fff;
     bottom: 0;
     left: 0;
+    transform: translate(0, 150px);
+    transition: transform 0.4s ease;
+}
+
+/* page-first --end*/
+
+/* page-second --start*/
+.background-svg {
+    width: 1900px;
+    right: 0;
+    transition: width 0.3s
+}
+#question span:nth-child(6) {
+    display: block;
+}
+
+.main-tree {
+    width: 850px;
+    top: 0px;
+    transform: translate(0px, -100px);
+    right: 0px;
+    transition: width 0.4s ease;
+}
+
+.cloud {
+    width: 930px;
+    top: 0px;
+    right: 70px;
+    transition: width 0.4s ease;
+}
+
+#page_2 .btn-explore {
+    display: none;
+}
+
+#page_2 h1 {
+    font-size: 60px;
+}
+
+#page_2.next .btn-explore {
+    display: inline-block;
+}
+
+#page_2.next .btn-start {
+    display: none;
+}
+
+/* page-second --end*/
+
+/* page-third --start*/
+.background.dark {
+    background: #000842;
+}
+.background.dark .background-svg {
+    width: 100%;
+}
+.ground.active {
+    transform: translate(0, 0)
+}
+
+.shrink .main-tree {
+    width: 420px;
+}
+
+#cloud-wrap.shrink .cloud {
+    width: 450px;
+}
+
+/* page-third --end*/
+
+.title-wrap {
+    position: absolute;
+    left: 100px;
+    top: 30%;
+    z-index: 10;
+}
+
+.title-wrap .content {
+    display: none;
+}
+
+.title-wrap .content.active {
+    display: block;
+}
+
+.title-wrap h1 {
+    color: #222;
+    font-size: 70px;
+    font-weight: 700
+}
+
+.title-wrap p {
+    font-size: 28px;
+    color: #888;
+    margin-top: 20px;
+}
+
+.btn-explore {
+    padding: 10px 45px;
+    font-size: 28px;
+    background: linear-gradient(125deg, rgb(242, 126, 252) 0%, rgb(145, 106, 252) 100%);
+    display: inline-block;
+    border-radius: 50px;
+    color: #fff;
+    margin-top: 40px;
+    text-transform: uppercase;
+}
+
+
+.rabbit-wrap .rabbit {
+    width: 500px;
+    bottom: -25px;
+    mix-blend-mode: color-dodge;
+    left: 0;
+}
+
+.butterfly-wrap .butterfly {
+    width: 100px;
+    mix-blend-mode: color-dodge;
+    bottom: 300px;
+}
+.butterfly-wrap #butterfly2{
+    bottom:600px;
+}
+.flowers-wrap .flowers {
+    width: 500px;
+    mix-blend-mode: color-dodge;
+    bottom: 150px;
+    right: 200px;
+}
+
+.light {
+    width: 100%;
+    top: 100px;
+    right: 160px;
+    height: 100%;
+    mix-blend-mode: screen
+}
+
+.lighten {
+    mix-blend-mode: lighten;
+}
+
+.sub-trees {
+    height: 100%;
+    left: 50px;
+}
+.coding-wrap{
+    background: #1c1c1c;
+    border-radius:10px;
+    transform: rotateX(49deg) rotateY(0) rotateZ(-37deg) scale(0.7) translate3d(0,0px,0);
+    width: 1200px;
+    height: 800px;
+}
+.coding-wrap .header{
+    height:70px;
+    background: rgba(255, 255, 255, 0.15);
+}
+.coding-wrap .content{
+    position:relative;
+    height:calc(100% - 70px);
+    padding: 0 30px 0 30px;
+    box-sizing: border-box;
+}
+.coding-wrap .content svg{
+    height: 100%;
+}
+.coding-wrap .content svg line{
+    stroke-miterlimit: 10;
+    stroke-linecap: round;
+    stroke-width: 10;
+    stroke-dasharray: 700;
+    stroke-dashoffset: 700;
+    
+}
+.coding-wrap.active .content svg line{
+    animation: linedAnimation 1.5s ease forwards;
+}
+.st0 {
+    fill: none;
+    stroke: #4287E7;
+    animation-delay: 0.2s !important;
+}
+
+.st1 {
+    fill: none;
+    stroke: #F9352A;
+    animation-delay: 0.3s !important;
+}
+
+.st2 {
+    fill: none;
+    stroke: #AEACDF;
+    animation-delay: 0.4s !important;
+}
+
+.st3 {
+    fill: none;
+    stroke: #1FF077;
+    animation-delay: 0.5s !important;
+}
+
+.st4 {
+    fill: none;
+    stroke: #5F5CAD;
+    animation-delay: 0.6s !important;
+}
+
+
+@keyframes linedAnimation{
+    from{
+        stroke-dashoffset: 700;
+    }
+    to{
+        stroke-dashoffset: 0;
+    }
 }

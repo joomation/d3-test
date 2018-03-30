@@ -26,14 +26,27 @@ function cloud(id) {
            var cloudGroup=this.svg.group(cloud1,cloud2,cloud3,cloud4);
            cloudGroup.attr({
                fill:mainColor,
-               opacity:0.3
+               opacity:0
            })
-           this.motion(cloudGroup)
+           setTimeout(()=>{
+            this.motion(cloudGroup)
+           },1000)
+           
         },
         motion: function (cloudGroup) {
             cloudGroup.animate({
                 opacity:0.3
-            },500)
+            },1000,mina.linear,()=>{
+                this.svg.animate({
+                    transform:`translate(80,0)`
+                },10000,mina.linear,()=>{
+                    this.svg.animate({
+                        transform:`translate(0,0)`
+                    },10000,()=>{
+                        this.motion(cloudGroup)
+                    })
+                })
+            })
         }
     }
 }
