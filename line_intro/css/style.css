@@ -15,27 +15,35 @@ body {
 
 body {
     font-family: "SF Pro KR", "SF Pro Text", "Yoon Gothic", "Myriad Set Pro", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "SF Pro Icons", "Apple Legacy Icons", "Apple Gothic", "HY Gulim", "MalgunGothic", "HY Dotum", "Lexi Gulim", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-    background: #fff;
+    background: #111;
 }
 svg {
     position: absolute;
 }
 .btn-start {
-    width: 100px;
     display: block;
-    margin: 50px 0 0 0;
     cursor: pointer;
+    position: absolute;
+    top: 200px;
+    transform: scale(1);
+    transition: all 0.4s ease;
 }
-
+.btn-start:active{
+    transform:scale(0.8)
+}
 .btn-start svg {
     position: relative;
     width: 65px;
     fill: none;
-    stroke: #000000;
+    stroke: #00b900;
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-miterlimit: 10;
     stroke-width: 0.7px;
+}
+.btn-start svg path{
+    stroke:#00b900;
+    stroke-width:2px;
 }
 .perspective-wrap{
     perspective: 2000px;
@@ -50,12 +58,21 @@ svg {
     right: 0;
     bottom: 0;
     left: 0;
-    margin: auto;
-}
-.background.pers{
-    transform: rotateX(49deg) rotateY(0) rotateZ(-37deg) scale(0.7) translate3d(0,0px,0);
+    margin: 0 auto;
+    box-shadow: -15px 20px 70px 0 rgba(0, 0, 0, 0.4);
 }
 
+.background.pers.final{
+    margin-top: -431px;
+    transition: all 0.5s ease;
+    opacity: 0.5;
+}
+#backgroundWrap{
+    opacity: 1;
+}
+#backgroundWrap.fade-out{
+    opacity: 0.8;
+}
 .background {
     position: relative;
     width: 100%;
@@ -75,21 +92,23 @@ svg {
     position: absolute;
     height: 150px;
     width: 100%;
-    background: #000842;
-    border-top: 3px solid #fff;
+    background: #111a4c;
     bottom: 0;
     left: 0;
     transform: translate(0, 150px);
     transition: transform 0.4s ease;
+    text-align: center;
+    box-sizing: border-box;
 }
 
 /* page-first --end*/
 
 /* page-second --start*/
 .background-svg {
-    width: 1900px;
+    min-width: 1900px;
+    width: 100%;
     right: 0;
-    transition: width 0.3s
+    transition: width 0.3s;
 }
 #question span:nth-child(6) {
     display: block;
@@ -100,26 +119,30 @@ svg {
     top: 0px;
     transform: translate(0px, -100px);
     right: 0px;
-    transition: width 0.4s ease;
+    transition: all 0.8s ease;
+    transform-origin: top right;
 }
-
-.cloud {
+#cloud-wrap{
     width: 930px;
-    top: 0px;
+    transition: all 0.8s ease;
+    transform-origin: top right;
+    position: absolute;
     right: 70px;
-    transition: width 0.4s ease;
+    top: 0;
+}
+#cloud-wrap.shrink{
+    transform: scale(0.48)
+}
+.cloud {
+    width:100%;
+    top: 0px;
+    right: 0;
 }
 
-#page_2 .btn-explore {
-    display: none;
-}
 
 #page_2 h1 {
     font-size: 60px;
-}
-
-#page_2.next .btn-explore {
-    display: inline-block;
+    height: 150px;
 }
 
 #page_2.next .btn-start {
@@ -131,6 +154,10 @@ svg {
 /* page-third --start*/
 .background.dark {
     background: #000842;
+    transform: rotateX(9deg) rotateY(0) rotateZ(deg) translate3d(0px,0px,0px);
+    transition:all 1s ease;
+    
+    will-change: transform;
 }
 .background.dark .background-svg {
     width: 100%;
@@ -140,15 +167,57 @@ svg {
 }
 
 .shrink .main-tree {
-    width: 420px;
-}
-
-#cloud-wrap.shrink .cloud {
-    width: 450px;
+    transform: translate(0px,-100px) scale(0.48);
 }
 
 /* page-third --end*/
-
+/* page-fourth --start*/
+/* page-fourth --end*/
+/* page-fifth --start*/
+.background.pers{
+    transform: rotateX(45deg) rotateY(0deg) rotateZ(-35deg) translate3d(0,0,0);
+    width: 1200px;
+    height: 900px;
+    z-index: 1;
+}
+.btn-final{
+    color: rgba(255, 255, 255, 1);
+    display: inline-block;
+    text-align:center;
+    padding: 15px 30px;
+    font-size: 24px;
+    font-weight: 200;
+    cursor:pointer;
+    margin-top: 40px;
+}
+#final {
+    color: #fff;
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    display: inline-block;
+    line-height: 30px;
+    text-align: right;
+    padding-right: 50px;
+    text-decoration: none;
+    opacity: 0;
+    transition: all 1s;
+}
+#final.active{
+    opacity: 1;
+}
+#final svg{
+    fill:none;
+    stroke:#fff;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    top: 0;
+    width: 25px;
+    bottom: 0;
+    margin: auto 10px;
+}
+/* page-fifth --end*/
 .title-wrap {
     position: absolute;
     left: 100px;
@@ -157,11 +226,19 @@ svg {
 }
 
 .title-wrap .content {
-    display: none;
+    opacity: 0;
+    visibility:hidden;
+    height: 0;
 }
-
+.title-wrap .content.disappear{
+    opacity:0;
+    transition:0.5s ease;
+    transform:translate(-500px,0)
+}
 .title-wrap .content.active {
     display: block;
+    opacity: 1;
+    visibility: visible;
 }
 
 .title-wrap h1 {
@@ -177,17 +254,45 @@ svg {
 }
 
 .btn-explore {
-    padding: 10px 45px;
-    font-size: 28px;
+    font-size: 22px;
     background: linear-gradient(125deg, rgb(242, 126, 252) 0%, rgb(145, 106, 252) 100%);
     display: inline-block;
-    border-radius: 50px;
-    color: #fff;
+    border-radius: 60px;
     margin-top: 40px;
     text-transform: uppercase;
+    cursor: pointer;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+}
+#page_2.next .btn-explore.active{
+    width: 180px;
+    transition-delay: 0s;
+}
+.btn-explore:active{
+    transform: scale(0.8) !important;
+}
+#page_2 .btn-explore {
+    transform:scale(0);
+    width:55px;
+
+}
+
+#page_2.next .btn-explore {
+    transform:scale(1);
+    transition: all 0.4s ease;
+    transition-delay: 1s;
 }
 
 
+.btn-explore span{
+    color: #fff;
+    opacity:0;
+    transition:all 0.3s ease;
+}
+.btn-explore.active span{
+    opacity:1;
+}
 .rabbit-wrap .rabbit {
     width: 500px;
     bottom: -25px;
@@ -196,7 +301,7 @@ svg {
 }
 
 .butterfly-wrap .butterfly {
-    width: 100px;
+    width: 120px;
     mix-blend-mode: color-dodge;
     bottom: 300px;
 }
@@ -204,10 +309,9 @@ svg {
     bottom:600px;
 }
 .flowers-wrap .flowers {
-    width: 500px;
-    mix-blend-mode: color-dodge;
-    bottom: 150px;
-    right: 200px;
+    width: 600px;
+    bottom: 140px;
+    right: 0;
 }
 
 .light {
@@ -215,23 +319,31 @@ svg {
     top: 100px;
     right: 160px;
     height: 100%;
-    mix-blend-mode: screen
+    mix-blend-mode: color-dodge
 }
 
 .lighten {
-    mix-blend-mode: lighten;
+    mix-blend-mode: color-dodge;
 }
 
-.sub-trees {
+.sub-trees,.sub-front-trees {
     height: 100%;
-    left: 50px;
+    right: 700px;
+
 }
 .coding-wrap{
     background: #1c1c1c;
     border-radius:10px;
-    transform: rotateX(49deg) rotateY(0) rotateZ(-37deg) scale(0.7) translate3d(0,0px,0);
+    transform: rotateX(45deg) rotateY(0deg) rotateZ(-35deg) translate3d(0,0,0);
     width: 1200px;
-    height: 800px;
+    height: 900px;
+    opacity: 0;
+    visibility: hidden;
+}
+.coding-wrap.active{
+    opacity: 1;
+    visibility: visible;
+    margin-top: 0px;
 }
 .coding-wrap .header{
     height:70px;
@@ -249,13 +361,13 @@ svg {
 .coding-wrap .content svg line{
     stroke-miterlimit: 10;
     stroke-linecap: round;
-    stroke-width: 10;
+    stroke-width: 12;
     stroke-dasharray: 700;
     stroke-dashoffset: 700;
     
 }
 .coding-wrap.active .content svg line{
-    animation: linedAnimation 1.5s ease forwards;
+    animation: linedAnimation 2s ease forwards;
 }
 .st0 {
     fill: none;

@@ -19,9 +19,11 @@ function rabbit(id) {
             var svgFlowPath2 = this.svg.path(`M379.6,348.8c-27.1,0-58.3-14.4-82-37.5`);
             var svgFlowGroup = this.svg.group(svgFlowPath1, svgFlowPath2);
             svgPath.attr({
-                fill: '#ff2877'
+                opacity:0,
+                fill: rabbitColor
             })
             svgFlowGroup.attr({
+                
                 fill: 'none',
                 stroke: '#ffffff',
                 strokeWidth: 3,
@@ -35,16 +37,22 @@ function rabbit(id) {
             this.svg.attr({
                 transform: resetMatrix
             })
-            this.move();
-            this.bounce(svgPath, svgFlowGroup);
+            
+            svgPath.animate({
+                opacity:1
+            },1000,mina.linear,()=>{
+                this.move();
+                this.bounce(svgPath, svgFlowGroup);
+            })
         },
+        
         move: function () {
             this.max = document.documentElement.clientWidth - 200
             if (this.x > this.max) {
                 this.x = 40;
                 var resetMatrix = new Snap.Matrix();
                 resetMatrix.translate(this.x + 40, 0);
-                this.svg.attr({
+                return this.svg.attr({
                     transform: resetMatrix
                 })
             }

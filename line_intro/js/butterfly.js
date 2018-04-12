@@ -9,6 +9,9 @@ function butterfly(id) {
         play: function () {
             var svgPath1 = this.svg.path(`M20,0v30L0.1,15L20,0z`);
             var svgPath2 = this.svg.path(`M20,0v30L0.1,15L20,0z`);
+            svgPath1.attr({
+                opacity: 0.5,
+            })
             var svgGroup = this.svg.group(svgPath1, svgPath2);
             svgGroup.attr({
                 transform: 'rotate(-125deg) translate(-15,0)'
@@ -18,7 +21,7 @@ function butterfly(id) {
             moveWing.translate(-this.x, 0);
             this.svg.attr({
                 transform: moveWing,
-                fill:`#940094`
+                fill:mainColor
             })
             this.move();
             this.motion(svgPath1, svgPath2);

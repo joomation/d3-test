@@ -4,21 +4,17 @@ function background(id) {
         backPath:'',
         play: function () {
             var backPath=this.svg.path(`M320,81c0,18.8-15.2,34-34,34c-9.3,0-17.7-3.7-23.9-9.8C255.9,99,252,90.5,252,81c0-9.4,3.8-17.9,10-24
-			c6.2-6.2,14.7-10,24-10C304.8,47,320,62.2,320,81z`);
+            c6.2-6.2,14.7-10,24-10C304.8,47,320,62.2,320,81z`);
+            var str_gradient = "l(1,0,0,1)#3c256c:20-#0e1961:80";
+            var gradient = this.svg.gradient(str_gradient);
             backPath.attr({
-                fill:mainBack
-            })
-
-            backPath.attr({
+                fill:gradient,
                 transform: 's0,0'
             })
-            this.backPath=backPath;
-            
             this.motion(backPath);
             
         },
         motion: function (backPath) {
-           console.log(backPath)
             backPath.animate({
                 transform: 's1,1'
             },1000,mina.bounce,()=>{

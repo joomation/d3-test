@@ -33,6 +33,7 @@ function mainTree(id) {
             });
             wings.attr({
                 fill:mainColor,
+                stroke:'none'
             })
             eyes.attr({
                 fill:mainBack
@@ -47,19 +48,25 @@ function mainTree(id) {
             
             var treePath=this.svg.polygon(`266.3,645.4 209.1,645.4 165.4,645.4 165.4,-7.4 209.5,-7.4 266.3,-7.4`);
             var treeStem=this.svg.path(`M176.7,233.6H18.2L6.6,222 M108.3,233.6L90.9,251 M18.2,233.6l-8.7,8.7 M35.5,206.4l27.2,27.2`);
+            var str_gradient = `l(0,0,0,1)${mainColor}:20-#0e1961:80`;
+            var gradient = this.svg.gradient(str_gradient);
             treePath.attr({
-                stroke:mainColor,
-                fill:mainFill,
+                stroke:'none',
+                fill:gradient,
                 strokeWidth:2,
             })
             treeStem.attr({
                 fill:'none',
-                stroke:mainColor,
+                stroke:mainTreeColor,
                 strokeWidth:6,
                 strokeLinecap:'round',
                 strokeLinejoin:'round',
                 strokeMiterlimit:10
             });
+            var treeGroup=this.svg.group(treePath,treeStem);
+            treeGroup.attr({
+                opacity:0.4
+            })
             this.motion(eyesLine);
             setTimeout(()=>{
                 this.appear(owlGroup)

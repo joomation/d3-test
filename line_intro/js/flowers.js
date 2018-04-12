@@ -30,7 +30,7 @@ function flowers(id) {
                 transform: `translate(${flowers1_2.getBBox().cx},${flowers1_2.getBBox().cy}) scale(0)`
             })
             flowers2_1.attr({
-                transform: `translate(${flowers2_1.getBBox().cx},${flowers2_1.getBBox().cy}) scale(0)`
+                transform: `translate(${flowers2_1.getBBox().cx},${flowers2_1.getBBox().cy}) scale(0)`,
             })
             flowers2_2.attr({
                 transform: `translate(${flowers2_2.getBBox().cx-5.5},${flowers2_2.getBBox().cy-48}) rotate(45)`,
@@ -56,12 +56,15 @@ function flowers(id) {
             var stemGroup = this.svg.group(stem1, stem2, stem3, stem4);
             var flowersGroup = this.svg.group(flowers1_1, flowers1_2, flowers2_1, flowers2_2, flowers2_3, flowers3_1, flowers3_2, flowers4_1, flowers4_2, flowers4_3);
             flowersGroup.attr({
-                fill: '#940094',
+                fill: treeColor,
             })
             stemGroup.attr({
-                stroke: '#940094',
+                stroke: treeColor,
+                strokeWidth:1,
                 strokeDasharray: 70,
-                strokeDashoffset: 70
+                strokeDashoffset: 70,
+                strokeLinecap: 'round',
+                strokeMiterlimit: 10,
             });
             this.motion(stemGroup, flowers1_1, flowers1_2, flowers2_1, flowers2_2, flowers2_3, flowers3_1, flowers3_2, flowers4_1, flowers4_2, flowers4_3)
         },

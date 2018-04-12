@@ -7,70 +7,81 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/snap.svg-min.js"></script>
-    <title>Document</title>
+    <title>자기소개</title>
 
 </head>
 
 <body>
     <div class="perspective-wrap">
         <div class="background" id="owlWrap">
-            <div class="title-wrap">
-                <div id="page_1" class="content active">
-                    <h1>Hello</h1>
-                    <p>인터랙션 디자인팀 지원자 이주형입니다.</p>
-                    <span class="btn-start" onclick="page('second')">
-                        <svg x="0px" y="0px" viewBox="0 0 30 30">
-                            <path class="st0" d="M1.5,15h26.3 M21.2,21.6l6.6-6.6l-6.6-6.6" />
-                        </svg>
-                    </span>
-                </div>
-                <div id="page_2" class="content">
-                    <h1 id="question">나를 보면 어떤 동물이 생각나?</h1>
-                    <span class="btn-start" onclick="page('third')">
-                        <svg x="0px" y="0px" viewBox="0 0 30 30">
-                            <path class="st0" d="M1.5,15h26.3 M21.2,21.6l6.6-6.6l-6.6-6.6" />
-                        </svg>
-                    </span>
-                    <span class="btn-explore" onclick="page('fourth')">Explore</span>
-                </div>
+            <div id="backgroundWrap">
 
+                <div class="title-wrap">
+                    <div id="page_1" class="content active">
+                        <h1>Hello</h1>
+                        <p>인터랙션 디자인팀 지원자 이주형입니다.</p>
+                        <span class="btn-start" onclick="page('second')">
+                            <svg x="0px" y="0px" viewBox="0 0 30 30">
+                                <path class="st0" d="M1.5,15h26.3 M21.2,21.6l6.6-6.6l-6.6-6.6" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div id="page_2" class="content">
+                        <h1 id="question">저를 보면 어떤 동물이 생각날까요?</h1>
+                        <span class="btn-start" onclick="page('third')">
+                            <svg x="0px" y="0px" viewBox="0 0 30 30">
+                                <path class="st0" d="M1.5,15h26.3 M21.2,21.6l6.6-6.6l-6.6-6.6" />
+                            </svg>
+                        </span>
+                        <a class="btn-explore" id="btnExplore" onclick="page('fourth')"><span>Explore</span></a>
+                    </div>
+
+                </div>
+                <svg class="background-svg" id="background" x="0px" y="0px" viewBox="0 0 400 256"></svg>
+                <div id="cloud-wrap">
+                    <svg class="cloud" id="cloud" x="0px" y="0px" viewBox="0 0 595 500"></svg>
+                </div>
+                <div id="main-tree-wrap" class="lighten">
+                    <svg class="main-tree" id="main-tree" viewBox="0 0 243.3 643"></svg>
+                </div>
+                <div class="light-wrap">
+                    <svg class="light" id="light" x="0px" y="0px"></svg>
+                </div>
+                <div class="flowers-wrap">
+                    <svg class="flowers" id="flowers" x="0px" y="0px" viewBox="0 0 137.5 90"></svg>
+                </div>
+                <div class="rabbit-wrap">
+                    <svg class="rabbit" id="rabbit" x="0px" y="0px" viewBox="0 0 460 460"></svg>
+                </div>
+                <div class="rabbit-wrap">
+                    <svg class="rabbit" id="rabbit2" x="0px" y="0px" viewBox="0 0 460 460"></svg>
+                </div>
+                <div class="butterfly-wrap">
+                    <svg class="butterfly" id="butterfly" x="0px" y="0px" viewBox="0 0 40 40"></svg>
+                </div>
+                <div class="butterfly-wrap">
+                    <svg class="butterfly" id="butterfly2" x="0px" y="0px" viewBox="0 0 40 40"></svg>
+                </div>
+                <div class="sub-trees-wrap">
+                    <svg class="sub-trees" id="sub-trees" viewBox="0 0 580 500"></svg>
+                </div>
+                <div class="sub-front-trees-wrap">
+                        <svg class="sub-front-trees" id="sub-front-trees" viewBox="0 0 580 500"></svg>
+                    </div>
+                <div id="ground" class="ground">
+                    <span class="btn-final" onclick="page('fifth')">NEXT</span>
+                </div>
             </div>
-            <svg class="background-svg" id="background" x="0px" y="0px" viewBox="0 0 400 256"></svg>
-            <div id="cloud-wrap">
-                <svg class="cloud" id="cloud" x="0px" y="0px" viewBox="0 0 595 500"></svg>
-            </div>
-            <div id="main-tree-wrap" class="lighten">
-                <svg class="main-tree" id="main-tree" viewBox="0 0 243.3 643"></svg>
-            </div>
-            <div class="light-wrap">
-                <svg class="light" id="light" x="0px" y="0px"></svg>
-            </div>
-            <div class="flowers-wrap">
-                <svg class="flowers" id="flowers" x="0px" y="0px" viewBox="0 0 137.5 90"></svg>
-            </div>
-            <div class="rabbit-wrap">
-                <svg class="rabbit" id="rabbit" x="0px" y="0px" viewBox="0 0 460 460"></svg>
-            </div>
-            <div class="rabbit-wrap">
-                <svg class="rabbit" id="rabbit2" x="0px" y="0px" viewBox="0 0 460 460"></svg>
-            </div>
-            <div class="butterfly-wrap">
-                <svg class="butterfly" id="butterfly" x="0px" y="0px" viewBox="0 0 40 40"></svg>
-            </div>
-            <div class="butterfly-wrap">
-                <svg class="butterfly" id="butterfly2" x="0px" y="0px" viewBox="0 0 40 40"></svg>
-            </div>
-            <div class="sub-trees-wrap">
-                <svg class="sub-trees" id="sub-trees" viewBox="0 0 580 500"></svg>
-            </div>
-            <div id="ground" class="ground"></div>
         </div>
-        <div class="coding-wrap">
-            <div class="header"></div>
+        <div class="coding-wrap" id="codingWrap">
+            <div class="header">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="content">
-                <svg  x="0px" y="0px" viewBox="0 0 1280 800">
+                <svg x="0px" y="0px" viewBox="0 0 1280 800">
                     <style type="text/css">
-                        
                     </style>
                     <line class="st0" x1="89.5" y1="65.5" x2="291.4" y2="65.5" />
                     <line class="st1" x1="139.5" y1="110.4" x2="691.4" y2="110.4" />
@@ -94,6 +105,11 @@
 
             </div>
         </div>
+        <a id="final" href="https://joomation.com/home">JOOMATION
+            <svg x="0px" y="0px" viewBox="0 0 30 30">
+                <path d="M1.5,15h26.3 M21.2,21.6l6.6-6.6l-6.6-6.6" />
+            </svg>
+        </a>
     </div>
 </body>
 <script src="js/shuffle.js"></script>
@@ -106,21 +122,28 @@
 <script src="js/subTrees.js"></script>
 <script src="js/mainTree.js"></script>
 <script>
-    var mainColor = "#916afb";
+    var mainColor = "#b075ff";
+    var mainTreeColor="#650ef3"
     var mainBack = "#000842";
-    var mainFill = 'rgba(145, 106, 252,0.2)';
-
+    var mainFill = 'rgba(145, 106, 252,0.3)';
+    var treeColor='#12194c';
+    var rabbitColor="#283873"
     function page(page) {
         var backgroundObj = new background('#background');
         var cloudObj = new cloud('#cloud');
         var mainTreeObj = new mainTree('#main-tree');
+        var lightObj = new light("#light");
 
+        var btnExplore=document.getElementById("btnExplore");
         var groundWrap = document.getElementById('ground');
         var owlWrap = document.getElementById("owlWrap");
         var cloudWrap = document.getElementById("cloud-wrap");
         var mainTreeId = document.getElementById('main-tree-wrap');
         var first = document.getElementById("page_1");
         var second = document.getElementById("page_2");
+        var codingWrap = document.getElementById("codingWrap");
+        var backgroundWrap = document.getElementById("backgroundWrap");
+        var final = document.getElementById("final");
         if (page === 'second') {
             first.classList.remove('active');
             second.classList.add('active');
@@ -134,11 +157,14 @@
             second.classList.add('next')
             backgroundObj.background.play();
             cloudObj.cloud.play();
-            mainTreeObj.mainTree.play()
+            mainTreeObj.mainTree.play();
+            setTimeout(()=>{
+                btnExplore.classList.add('active')
+            },1500)
         } else if (page === 'fourth') {
             second.classList.remove('active');
+            second.classList.add('disappear');
             backgroundObj.background.extend();
-
             setTimeout(() => {
                 mainTreeId.classList.add('shrink');
                 cloudWrap.classList.add('shrink')
@@ -160,12 +186,22 @@
 
                 var flowersObj = new flowers("#flowers");
                 flowersObj.flowers.play()
-                var lightObj = new light("#light");
                 lightObj.light.play()
 
                 var subTreesObj = new subTrees('#sub-trees');
                 subTreesObj.subTrees.play()
+                var subFrontTreesObj = new subFrontTrees('#sub-front-trees');
+                subFrontTreesObj.subFrontTrees.play()
             }, 1500)
+        } else if (page === 'fifth') {
+            lightObj.light.remove();
+            final.classList.add('active')
+            owlWrap.classList.add('pers');
+            owlWrap.addEventListener("transitionend", () => {
+                owlWrap.classList.add('final');
+                backgroundWrap.classList.add('fade-out')
+                codingWrap.classList.add('active');
+            });
 
         }
     }

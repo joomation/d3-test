@@ -11,8 +11,10 @@ function light(id) {
             this.winW=document.documentElement.clientWidth
             this.winH=document.documentElement.clientHeight
             var light=this.svg.polyline(`${this.right},${this.winH} ${this.left},${this.winH} ${this.winW-150},-1 ${this.winW-150},-1`);
+            var str_gradient = "l(0,0,0,1)rgba(106, 206, 229,0):0-#6acee5:30";
+            var gradient = this.svg.gradient(str_gradient);
             light.attr({
-                fill:'#6acee5',
+                fill:gradient,
             });
             
             document.addEventListener('click',this.appear.bind(this,light))
@@ -42,8 +44,8 @@ function light(id) {
 
 
         },
-        motion: function (svgPath1, svgPath2) {
-            
+        remove: function () {
+            this.svg.remove()
         }
     }
 }
